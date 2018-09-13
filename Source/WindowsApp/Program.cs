@@ -9,14 +9,15 @@ namespace MonitoR.Configurator
 {
     static class Program
     {
-        static readonly SimpleInjector.Container container;
+        static readonly SimpleInjector.Container container = new SimpleInjector.Container();
+//#pragma warning disable S3963 // "static" fields should be initialized inline
         static Program()
         {
-            container = new SimpleInjector.Container();
             container.RegisterSingleton<IAppConfig, AppConfig>();
             container.RegisterSingleton<ILog, Log>();
             container.Verify();
         }
+//#pragma warning restore S3963 // "static" fields should be initialized inline
 
         /// <summary>
         /// The main entry point for the application.

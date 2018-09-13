@@ -19,50 +19,44 @@ namespace MonitoR.Common.Sensors
         public override ReturnValue Execute(IAppConfig appConfig, ILog log)
         {
             var errorList = new StringBuilder();
+            var warningList = new List<string>();
 
             var services = ServiceController.GetServices();
             foreach (var service in Services)
             {
-                if (services.FirstOrDefault(x=> x.ServiceName.ToUpper().Equals(service.ToUpper())) == null )
+                var systemService = services.FirstOrDefault(x => x.DisplayName.Trim().ToUpper().Equals(service.Trim().ToUpper()));
+                if (systemService == null )
                 {
                     errorList.AppendLine($"Service {service} is not installed");
                     continue;
                 }
 
-                foreach (ServiceController systemService in services)
+                if (systemService.Status == ServiceControllerStatus.Running || systemService.Status == ServiceControllerStatus.StartPending)
                 {
-                    if (systemService.ServiceName.ToUpper().Equals(service.ToUpper()) == false)
-                    {
-                        continue;
-                    }
-
-                    if (!(systemService.Status == ServiceControllerStatus.Running || systemService.Status == ServiceControllerStatus.StartPending))
-                    {
-                        if (RestartIfStopped)
-                        {
-                            systemService.Start();
-                            systemService.WaitForStatus(ServiceControllerStatus.Running, new System.TimeSpan(0, 0, 10)); // wait for 10 secs and see if the service is up and running
-                            if (!(systemService.Status == ServiceControllerStatus.Running || systemService.Status == ServiceControllerStatus.StartPending))
-                            {
-                                errorList.AppendLine($"Service {service} is not running and start by the monitor is failed");
-                            }
-                            else
-                            {
-                                errorList.AppendLine($"Service {service} is not running and it is started by the monitor");
-                            }
-                        }
-                        else
-                        {
-                            errorList.AppendLine($"Service {service} is not running");
-                        }
-                    }
+                    continue;
                 }
+
+                if (RestartIfStopped == false)
+                {
+                    errorList.AppendLine($"Service {service} is not running");
+                    continue;
+                }
+
+                systemService.Start();
+                systemService.WaitForStatus(ServiceControllerStatus.Running, new System.TimeSpan(0, 0, 20)); // wait for 10 secs and see if the service is up and running
+                if (systemService.Status == ServiceControllerStatus.Running || systemService.Status == ServiceControllerStatus.StartPending)
+                {
+                    errorList.AppendLine($"Service {service} was not running and start by the monitor");
+                    continue;
+                }
+
+                errorList.AppendLine($"Service {service} is not running and start by the monitor is failed");
             }
 
-            if (errorList.Length == 0)
-                return ReturnValue.True();
-            else
+            if (errorList.Length > 0)
                 return ReturnValue.False(errorList.ToString());
+
+            return ReturnValue.True();
         }
 
         public override ReturnValue IsValid(List<ISensor> allSensors)

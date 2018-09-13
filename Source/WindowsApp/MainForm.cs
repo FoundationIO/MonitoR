@@ -51,10 +51,11 @@ namespace MonitoR.Configurator
             }
 
             AddMenuItem("Http sensor",this.HttpSensorToolStripMenuItem_Click);
+            AddMenuItem("Service sensor", this.ServiceSensorToolStripMenuItem_Click);
 
             if (newFeatureEnabled)
             {
-                AddMenuItem("Service sensor", this.ServiceSensorToolStripMenuItem_Click);
+                
                 AddMenuItem("Process sensor", this.ProcessSensorToolStripMenuItem_Click);
                 AddMenuItem("Sql Connection sensor", this.SqlConnectionSensorToolStripMenuItem_Click);
                 AddMenuItem("IIS Application Pool sensor", this.IISApplicationPoolSensorToolStripMenuItem_Click);
@@ -406,7 +407,6 @@ namespace MonitoR.Configurator
             if (lvSensorList.SelectedItems[0].Tag is ISensor iSensor)
             {
                 EditSensor(iSensor);
-                return;
             }
         }
 
@@ -475,6 +475,21 @@ namespace MonitoR.Configurator
 
             Process.Start("explorer.exe", appConfig.GetLogFolderPath());
 
+        }
+
+        private void tmrServiceStatusCheck_Tick(object sender, EventArgs e)
+        {
+            var processList = Process.GetProcessesByName("MonitoR.WindowsService");
+            if (processList.Any())
+            {
+                toolStripServiceStatusLabel.Text = "Status : Monitor Service is running";
+                toolStripServiceStatusLabel.ForeColor = Color.Green;
+            }
+            else
+            {
+                toolStripServiceStatusLabel.Text = "Status : Monitor Service is not running";
+                toolStripServiceStatusLabel.BackColor = Color.PaleVioletRed;
+            }
         }
     }
 }

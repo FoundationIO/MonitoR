@@ -1,0 +1,16 @@
+﻿Add support for FolderSize Sensor
+Add support for Service Sensor
+Add support for Process Sensor
+Add support for SqlConnection Sensor
+Add support for IISWebsite Sensor
+Add support for IISAppPool Sensor
+Add support for FileSize Sensor
+Backend > Clear Log
+1) Add a confirmation when the export is completed.
+2) When importing items, duplicate items are added
+3)When saving the Options, decrypt the password of the email.
+5) Add Link in About box.
+6) Add version number in About box.
+7)When validating entries in Sensor, we need to make the control high lighted if it has an error.
+8) Show sumarry of the import
+When importing, remove the duplicates

@@ -37,7 +37,9 @@ namespace MonitoR.Configurator.SensorForms.SelectorForm
 
         private void Button1_Click(object sender, EventArgs e)
         {
+
             Refresh();
+            txtFilter.Text = "";
             LoadServicesInUI();
         }
 

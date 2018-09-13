@@ -14,10 +14,9 @@ namespace MonitoR.WindowsService
 {
     public static class Program
     {
-        static readonly Container container;
+        static readonly Container container = new Container();
         static Program()
         {
-            container = new Container();
             container.RegisterSingleton<IAppConfig, AppConfig>();
             container.RegisterSingleton<ILog, Log>();
             container.RegisterSingleton<IEmailService, EmailService>();

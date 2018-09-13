@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ServiceMonitor.Common")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("MonitorR.Common")]
+[assembly: AssemblyDescription("MonitorR Common Libraries")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ServiceMonitor.Common")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCompany("Foundation.IO")]
+[assembly: AssemblyProduct("MonitorR.Common")]
+[assembly: AssemblyCopyright("Copyright © Foundation.IO  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

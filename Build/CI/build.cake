@@ -75,7 +75,6 @@ Task("Default")
     .IsDependentOn(customCommandStr);
 
 Task(buildStr)
-	//.IsDependentOn(setVersionStr)
     .Does(() =>
 {
     Warning("Restoring Nuget Packages:");
@@ -87,6 +86,8 @@ Task(buildStr)
         .SetVerbosity(Verbosity.Minimal)
         .WithTarget("Build")
         .WithProperty("TreatWarningsAsErrors","true"));
+    
+    RunTarget(setVersionStr);
 });
 
 
@@ -117,6 +118,8 @@ Task(setVersionStr)
 {
      var versionInfo = GitVersion();
 
+    var verStr= versionInfo.MajorMinorPatch+"."+ versionInfo.PreReleaseNumber + " (" + DateTime.Now.ToShortDateString() +  ")";
+
     Warning("MajorMinorPatch: {0}", versionInfo.MajorMinorPatch);
     //Warning("FullSemVer: {0}", versionInfo.FullSemVer);
     //Warning("InformationalVersion: {0}", versionInfo.InformationalVersion);
@@ -124,8 +127,9 @@ Task(setVersionStr)
     //Warning("Nuget v1 version: {0}", versionInfo.NuGetVersion);
     //Warning("Nuget v2 version: {0}", versionInfo.NuGetVersionV2);
     //Warning("PreReleaseNumber: {0}", versionInfo.PreReleaseNumber);
-    
-    FileWriteText("../Source/WindowsService/bin/Release/version_number.txt", versionInfo.MajorMinorPatch+"."+ versionInfo.PreReleaseNumber + " (" + DateTime.Now.ToShortDateString() +  ")");
+    var versionFile = "../../Source/WindowsService/bin/Release/version_number.txt";
+    Warning("Writing version number - " + verStr + "to file - " + versionFile);
+    FileWriteText(versionFile, verStr);
 });
 
 //////////////////////////////////////////////////////////////////////

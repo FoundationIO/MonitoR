@@ -34,7 +34,7 @@
             this.btDelete = new System.Windows.Forms.Button();
             this.btAddItem = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.cklbDrives = new System.Windows.Forms.ListBox();
+            this.cklbServices = new System.Windows.Forms.ListBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cbEnabled = new System.Windows.Forms.CheckBox();
@@ -49,6 +49,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbRestartServiceIfStopped = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtCheckEveryTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtNotifyAfterFailureTimes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -66,10 +67,10 @@
             this.btDelete.ImageIndex = 1;
             this.btDelete.ImageList = this.imageList1;
             this.btDelete.Location = new System.Drawing.Point(531, 353);
-            this.btDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(57, 28);
-            this.btDelete.TabIndex = 6;
+            this.btDelete.TabIndex = 7;
             this.btDelete.UseVisualStyleBackColor = true;
             this.btDelete.Click += new System.EventHandler(this.BtDelete_Click);
             // 
@@ -78,10 +79,10 @@
             this.btAddItem.ImageIndex = 0;
             this.btAddItem.ImageList = this.imageList1;
             this.btAddItem.Location = new System.Drawing.Point(465, 353);
-            this.btAddItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAddItem.Margin = new System.Windows.Forms.Padding(4);
             this.btAddItem.Name = "btAddItem";
             this.btAddItem.Size = new System.Drawing.Size(57, 28);
-            this.btAddItem.TabIndex = 5;
+            this.btAddItem.TabIndex = 6;
             this.btAddItem.UseVisualStyleBackColor = true;
             this.btAddItem.Click += new System.EventHandler(this.BtAddItem_Click);
             // 
@@ -95,20 +96,20 @@
             this.label8.TabIndex = 31;
             this.label8.Text = "Services to check :";
             // 
-            // cklbDrives
+            // cklbServices
             // 
-            this.cklbDrives.FormattingEnabled = true;
-            this.cklbDrives.ItemHeight = 16;
-            this.cklbDrives.Location = new System.Drawing.Point(27, 230);
-            this.cklbDrives.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cklbDrives.Name = "cklbDrives";
-            this.cklbDrives.Size = new System.Drawing.Size(560, 100);
-            this.cklbDrives.TabIndex = 4;
+            this.cklbServices.FormattingEnabled = true;
+            this.cklbServices.ItemHeight = 16;
+            this.cklbServices.Location = new System.Drawing.Point(27, 230);
+            this.cklbServices.Margin = new System.Windows.Forms.Padding(4);
+            this.cklbServices.Name = "cklbServices";
+            this.cklbServices.Size = new System.Drawing.Size(560, 100);
+            this.cklbServices.TabIndex = 5;
             // 
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(133, 23);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(453, 22);
             this.txtName.TabIndex = 0;
@@ -127,10 +128,10 @@
             // 
             this.cbEnabled.AutoSize = true;
             this.cbEnabled.Location = new System.Drawing.Point(27, 416);
-            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4);
             this.cbEnabled.Name = "cbEnabled";
             this.cbEnabled.Size = new System.Drawing.Size(82, 21);
-            this.cbEnabled.TabIndex = 8;
+            this.cbEnabled.TabIndex = 9;
             this.cbEnabled.Text = "Enabled";
             this.cbEnabled.UseVisualStyleBackColor = true;
             // 
@@ -138,17 +139,17 @@
             // 
             this.cbNotifyByEmail.AutoSize = true;
             this.cbNotifyByEmail.Location = new System.Drawing.Point(27, 367);
-            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4);
             this.cbNotifyByEmail.Name = "cbNotifyByEmail";
             this.cbNotifyByEmail.Size = new System.Drawing.Size(123, 21);
-            this.cbNotifyByEmail.TabIndex = 7;
+            this.cbNotifyByEmail.TabIndex = 8;
             this.cbNotifyByEmail.Text = "Notify by Email";
             this.cbNotifyByEmail.UseVisualStyleBackColor = true;
             // 
             // ntxtCheckEveryTime
             // 
             this.ntxtCheckEveryTime.Location = new System.Drawing.Point(133, 69);
-            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4);
             this.ntxtCheckEveryTime.Name = "ntxtCheckEveryTime";
             this.ntxtCheckEveryTime.Size = new System.Drawing.Size(76, 22);
             this.ntxtCheckEveryTime.TabIndex = 1;
@@ -162,7 +163,7 @@
             "mins",
             "hours"});
             this.cmbTimeType.Location = new System.Drawing.Point(217, 69);
-            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTimeType.Name = "cmbTimeType";
             this.cmbTimeType.Size = new System.Drawing.Size(85, 24);
             this.cmbTimeType.TabIndex = 2;
@@ -170,10 +171,10 @@
             // btOk
             // 
             this.btOk.Location = new System.Drawing.Point(405, 537);
-            this.btOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btOk.Margin = new System.Windows.Forms.Padding(4);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(100, 28);
-            this.btOk.TabIndex = 9;
+            this.btOk.TabIndex = 10;
             this.btOk.Text = "Ok";
             this.btOk.UseVisualStyleBackColor = true;
             this.btOk.Click += new System.EventHandler(this.BtOk_Click);
@@ -182,10 +183,10 @@
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Location = new System.Drawing.Point(529, 537);
-            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(100, 28);
-            this.btCancel.TabIndex = 10;
+            this.btCancel.TabIndex = 11;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
             // 
@@ -214,7 +215,7 @@
             // ntxtNotifyAfterFailureTimes
             // 
             this.ntxtNotifyAfterFailureTimes.Location = new System.Drawing.Point(133, 113);
-            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4);
             this.ntxtNotifyAfterFailureTimes.Name = "ntxtNotifyAfterFailureTimes";
             this.ntxtNotifyAfterFailureTimes.Size = new System.Drawing.Size(76, 22);
             this.ntxtNotifyAfterFailureTimes.TabIndex = 3;
@@ -241,10 +242,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbRestartServiceIfStopped);
             this.groupBox1.Controls.Add(this.btDelete);
             this.groupBox1.Controls.Add(this.btAddItem);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.cklbDrives);
+            this.groupBox1.Controls.Add(this.cklbServices);
             this.groupBox1.Controls.Add(this.txtName);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.cbEnabled);
@@ -256,12 +258,23 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(16, 54);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(613, 458);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
+            // 
+            // cbRestartServiceIfStopped
+            // 
+            this.cbRestartServiceIfStopped.AutoSize = true;
+            this.cbRestartServiceIfStopped.Location = new System.Drawing.Point(27, 154);
+            this.cbRestartServiceIfStopped.Margin = new System.Windows.Forms.Padding(4);
+            this.cbRestartServiceIfStopped.Name = "cbRestartServiceIfStopped";
+            this.cbRestartServiceIfStopped.Size = new System.Drawing.Size(218, 21);
+            this.cbRestartServiceIfStopped.TabIndex = 4;
+            this.cbRestartServiceIfStopped.Text = "Restart Service if it is stopped";
+            this.cbRestartServiceIfStopped.UseVisualStyleBackColor = true;
             // 
             // ServiceSensorForm
             // 
@@ -273,7 +286,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ServiceSensorForm";
@@ -294,7 +307,7 @@
         private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.Button btAddItem;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ListBox cklbDrives;
+        private System.Windows.Forms.ListBox cklbServices;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox cbEnabled;
@@ -309,5 +322,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox cbRestartServiceIfStopped;
     }
 }

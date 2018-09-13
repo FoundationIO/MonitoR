@@ -50,12 +50,13 @@ namespace MonitoR.Configurator.SensorForms
             Sensor.CheckInterval = (int)ntxtCheckEveryTime.Value;
             Sensor.IntervalType = (CheckIntervalType)cmbTimeType.SelectedIndex;
             this.Sensor.Services.Clear();
-            for (int i = 0; i < cklbDrives.Items.Count; ++i)
+            for (int i = 0; i < cklbServices.Items.Count; ++i)
             {
-                this.Sensor.Services.Add(cklbDrives.Items[i].ToString());
+                this.Sensor.Services.Add(cklbServices.Items[i].ToString());
             }
             Sensor.Enabled = cbEnabled.Checked;
             Sensor.NotifyByEmail = cbNotifyByEmail.Checked;
+            Sensor.RestartIfStopped = cbRestartServiceIfStopped.Checked;
         }
 
         public void UpdateUIFromData()
@@ -64,13 +65,14 @@ namespace MonitoR.Configurator.SensorForms
             ntxtNotifyAfterFailureTimes.Value = Sensor.NotifyIfHappensAfterTimes;
             ntxtCheckEveryTime.Value = Sensor.CheckInterval;
             cmbTimeType.SelectedIndex = (int)Sensor.IntervalType;
-            cklbDrives.Items.Clear();
+            cklbServices.Items.Clear();
             foreach (var dr in this.Sensor.Services)
             {
-                cklbDrives.Items.Add(dr);
+                cklbServices.Items.Add(dr);
             }
             cbEnabled.Checked = Sensor.Enabled;
             cbNotifyByEmail.Checked = Sensor.NotifyByEmail;
+            cbRestartServiceIfStopped.Checked = Sensor.RestartIfStopped;
         }
 
         private void BtOk_Click(object sender, EventArgs e)
@@ -94,18 +96,18 @@ namespace MonitoR.Configurator.SensorForms
                 if (selectorForm.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                this.cklbDrives.Items.Clear();
+                this.cklbServices.Items.Clear();
                 foreach (var item in selectorForm.GetSelectedItems())
-                    cklbDrives.Items.Add(item);
+                    cklbServices.Items.Add(item);
             }
         }
 
         private void BtDelete_Click(object sender, EventArgs e)
         {
-            if (cklbDrives.SelectedIndex == -1)
+            if (cklbServices.SelectedIndex == -1)
                 return;
 
-            cklbDrives.Items.RemoveAt(cklbDrives.SelectedIndex);
+            cklbServices.Items.RemoveAt(cklbServices.SelectedIndex);
         }
 
         protected override void OnShown(EventArgs e)

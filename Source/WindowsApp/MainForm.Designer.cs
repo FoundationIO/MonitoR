@@ -30,6 +30,7 @@ namespace MonitoR.Configurator
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -77,17 +78,20 @@ namespace MonitoR.Configurator
             this.EditToolbarMenuItem = new System.Windows.Forms.ToolStripButton();
             this.DeleteToolbarMenuItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.OptionsToolbarMenuItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.AboutToolbarMenuItem = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripServiceStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tmrServiceStatusCheck = new System.Windows.Forms.Timer(this.components);
             this.lvSensorList = new MonitoR.Configurator.Components.NoDoubleClickAutoCheckListview();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.OptionsToolbarMenuItem = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -95,10 +99,12 @@ namespace MonitoR.Configurator
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 560);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripServiceStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 557);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1004, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1004, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -475,6 +481,21 @@ namespace MonitoR.Configurator
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
+            // OptionsToolbarMenuItem
+            // 
+            this.OptionsToolbarMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.OptionsToolbarMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OptionsToolbarMenuItem.Image")));
+            this.OptionsToolbarMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.OptionsToolbarMenuItem.Name = "OptionsToolbarMenuItem";
+            this.OptionsToolbarMenuItem.Size = new System.Drawing.Size(28, 28);
+            this.OptionsToolbarMenuItem.Text = "Options";
+            this.OptionsToolbarMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            // 
             // AboutToolbarMenuItem
             // 
             this.AboutToolbarMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -496,6 +517,19 @@ namespace MonitoR.Configurator
             // 
             this.openFileDialog.Filter = "Monitor Settings Files | *.json|All Files|*.*";
             this.openFileDialog.Title = "Import Sensor Settings";
+            // 
+            // toolStripServiceStatusLabel
+            // 
+            this.toolStripServiceStatusLabel.Name = "toolStripServiceStatusLabel";
+            this.toolStripServiceStatusLabel.Size = new System.Drawing.Size(945, 20);
+            this.toolStripServiceStatusLabel.Spring = true;
+            this.toolStripServiceStatusLabel.Text = "Service Status : Unknown";
+            this.toolStripServiceStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tmrServiceStatusCheck
+            // 
+            this.tmrServiceStatusCheck.Enabled = true;
+            this.tmrServiceStatusCheck.Tick += new System.EventHandler(this.tmrServiceStatusCheck_Tick);
             // 
             // lvSensorList
             // 
@@ -547,21 +581,6 @@ namespace MonitoR.Configurator
             this.columnHeader5.Text = "Last Status";
             this.columnHeader5.Width = 195;
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
-            // 
-            // OptionsToolbarMenuItem
-            // 
-            this.OptionsToolbarMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.OptionsToolbarMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("OptionsToolbarMenuItem.Image")));
-            this.OptionsToolbarMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.OptionsToolbarMenuItem.Name = "OptionsToolbarMenuItem";
-            this.OptionsToolbarMenuItem.Size = new System.Drawing.Size(28, 28);
-            this.OptionsToolbarMenuItem.Text = "Options";
-            this.OptionsToolbarMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -576,8 +595,10 @@ namespace MonitoR.Configurator
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MonitoR";
+            this.Text = "MonitoR - Configurator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -646,6 +667,8 @@ namespace MonitoR.Configurator
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton OptionsToolbarMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripServiceStatusLabel;
+        private System.Windows.Forms.Timer tmrServiceStatusCheck;
     }
 }
 
