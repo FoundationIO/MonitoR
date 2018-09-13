@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A9A0F039-C3C4-4536-A839-2BD0F078AFD6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MonitoR.Configurator</RootNamespace>
+    <AssemblyName>MonitoR.Configurator</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\MonitorR.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>..\MonitorR.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_Artboard_1_1790658.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\NoDoubleClickAutoCheckListview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptionForm.Designer.cs">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SensorForms\CpuSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\CpuSensorForm.Designer.cs">
+      <DependentUpon>CpuSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\DriveSpaceSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\DriveSpaceSensorForm.Designer.cs">
+      <DependentUpon>DriveSpaceSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\FileSizeSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\FileSizeSensorForm.Designer.cs">
+      <DependentUpon>FileSizeSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\FolderSizeSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\FolderSizeSensorForm.Designer.cs">
+      <DependentUpon>FolderSizeSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\FtpSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\FtpSensorForm.Designer.cs">
+      <DependentUpon>FtpSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\HttpSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\HttpSensorForm.Designer.cs">
+      <DependentUpon>HttpSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\IISApplicationPoolSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\IISApplicationPoolSensorForm.Designer.cs">
+      <DependentUpon>IISApplicationPoolSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\IISWebsiteSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\IISWebsiteSensorForm.Designer.cs">
+      <DependentUpon>IISWebsiteSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\PingSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\PingSensorForm.Designer.cs">
+      <DependentUpon>PingSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\ProcessSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\ProcessSensorForm.Designer.cs">
+      <DependentUpon>ProcessSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\RamSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\RamSensorForm.Designer.cs">
+      <DependentUpon>RamSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\SelectorForm\ProcessSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\SelectorForm\ProcessSelectorForm.Designer.cs">
+      <DependentUpon>ProcessSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\SelectorForm\ServiceSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\SelectorForm\ServiceSelectorForm.Designer.cs">
+      <DependentUpon>ServiceSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\ServiceSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\ServiceSensorForm.Designer.cs">
+      <DependentUpon>ServiceSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\SqlConnectionSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\SqlConnectionSensorForm.Designer.cs">
+      <DependentUpon>SqlConnectionSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\FormUtils.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptionForm.resx">
+      <DependentUpon>OptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SensorForms\CpuSensorForm.resx">
+      <DependentUpon>CpuSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\DriveSpaceSensorForm.resx">
+      <DependentUpon>DriveSpaceSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\FileSizeSensorForm.resx">
+      <DependentUpon>FileSizeSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\FolderSizeSensorForm.resx">
+      <DependentUpon>FolderSizeSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\FtpSensorForm.resx">
+      <DependentUpon>FtpSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\HttpSensorForm.resx">
+      <DependentUpon>HttpSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\IISApplicationPoolSensorForm.resx">
+      <DependentUpon>IISApplicationPoolSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\IISWebsiteSensorForm.resx">
+      <DependentUpon>IISWebsiteSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\PingSensorForm.resx">
+      <DependentUpon>PingSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\ProcessSensorForm.resx">
+      <DependentUpon>ProcessSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\RamSensorForm.resx">
+      <DependentUpon>RamSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\SelectorForm\ProcessSelectorForm.resx">
+      <DependentUpon>ProcessSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\SelectorForm\ServiceSelectorForm.resx">
+      <DependentUpon>ServiceSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\ServiceSensorForm.resx">
+      <DependentUpon>ServiceSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\SqlConnectionSensorForm.resx">
+      <DependentUpon>SqlConnectionSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_register16_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_settings16_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_unregister16_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\views16_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_options16.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder_mail_16_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_male16_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\MonitoR.Common.csproj">
+      <Project>{aa71fe16-d3e7-4154-96a8-94d647784462}</Project>
+      <Name>MonitoR.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_settings24_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_register24_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\db_unregister24_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\group_user24_h.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SimpleInjector">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="SonarAnalyzer.CSharp">
+      <Version>7.3.0.5690</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="if_Artboard_1_1790658.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
