@@ -19,7 +19,6 @@ namespace MonitoR.Common.Sensors
         public override ReturnValue Execute(IAppConfig appConfig, ILog log)
         {
             var errorList = new StringBuilder();
-            var warningList = new List<string>();
 
             var services = ServiceController.GetServices();
             foreach (var service in Services)

@@ -162,8 +162,8 @@ begin
         CustomUpdateUnInstallStatus('Stopping the services');
     
     UnInstallMatchingServices('{#ServiceFileName}',true,true);
-    KillApp('mmc');
-    KillApp('{#ServiceFileName}');
+    KillProcess('mmc');
+    KillProcess('{#ServiceFileName}');
   end;
 
   if (CurUninstallStep=usPostUninstall) then
