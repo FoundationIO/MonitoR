@@ -101,6 +101,7 @@ namespace MonitoR.Configurator
                 var lvItem = lvSensorList.Items.Add(item.SensorType.ToString());
                 lvItem.Checked = item.Enabled;
                 lvItem.SubItems.Add(item.Name);
+                lvItem.SubItems.Add(item.GetDetails());
                 lvItem.Tag = item;
             }
         }

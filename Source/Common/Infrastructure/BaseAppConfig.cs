@@ -14,9 +14,9 @@ namespace MonitoR.Common.Infrastructure
 {
     public class BaseAppConfig
     {
-        public bool LogTrace { get; set; } = true;
-        public bool LogDebug { get; set; } = true;
-        public bool LogInfo { get; set; } = true;
+        public bool LogTrace { get; set; } = false;
+        public bool LogDebug { get; set; } = false;
+        public bool LogInfo { get; set; } = false;
         public bool LogWarn { get; set; } = true;
         public bool LogError { get; set; } = true;
 

@@ -26,6 +26,7 @@ namespace MonitoR.Common.Sensors
         bool NotifyByEmail { get; set; }
         int ContinousErrorOccurenceCount { get; set; }
         ReturnValue Execute(IAppConfig appConfig, ILog log);
+        string GetDetails();
     }
 
 

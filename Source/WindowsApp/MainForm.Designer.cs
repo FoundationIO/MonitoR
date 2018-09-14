@@ -33,6 +33,7 @@ namespace MonitoR.Configurator
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripServiceStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.logsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,14 +84,12 @@ namespace MonitoR.Configurator
             this.AboutToolbarMenuItem = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripServiceStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrServiceStatusCheck = new System.Windows.Forms.Timer(this.components);
             this.lvSensorList = new MonitoR.Configurator.Components.NoDoubleClickAutoCheckListview();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -107,6 +106,14 @@ namespace MonitoR.Configurator
             this.statusStrip1.Size = new System.Drawing.Size(1004, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripServiceStatusLabel
+            // 
+            this.toolStripServiceStatusLabel.Name = "toolStripServiceStatusLabel";
+            this.toolStripServiceStatusLabel.Size = new System.Drawing.Size(984, 20);
+            this.toolStripServiceStatusLabel.Spring = true;
+            this.toolStripServiceStatusLabel.Text = "Service Status : Unknown";
+            this.toolStripServiceStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // menuStrip1
             // 
@@ -518,14 +525,6 @@ namespace MonitoR.Configurator
             this.openFileDialog.Filter = "Monitor Settings Files | *.json|All Files|*.*";
             this.openFileDialog.Title = "Import Sensor Settings";
             // 
-            // toolStripServiceStatusLabel
-            // 
-            this.toolStripServiceStatusLabel.Name = "toolStripServiceStatusLabel";
-            this.toolStripServiceStatusLabel.Size = new System.Drawing.Size(945, 20);
-            this.toolStripServiceStatusLabel.Spring = true;
-            this.toolStripServiceStatusLabel.Text = "Service Status : Unknown";
-            this.toolStripServiceStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tmrServiceStatusCheck
             // 
             this.tmrServiceStatusCheck.Enabled = true;
@@ -541,8 +540,7 @@ namespace MonitoR.Configurator
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
+            this.columnHeader4});
             this.lvSensorList.FullRowSelect = true;
             this.lvSensorList.HideSelection = false;
             this.lvSensorList.Location = new System.Drawing.Point(0, 71);
@@ -564,22 +562,17 @@ namespace MonitoR.Configurator
             // columnHeader2
             // 
             this.columnHeader2.Text = "Name";
-            this.columnHeader2.Width = 195;
+            this.columnHeader2.Width = 225;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Details";
-            this.columnHeader3.Width = 183;
+            this.columnHeader3.Width = 300;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Last Run";
-            this.columnHeader4.Width = 106;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Last Status";
-            this.columnHeader5.Width = 195;
+            this.columnHeader4.Width = 175;
             // 
             // MainForm
             // 
@@ -647,7 +640,6 @@ namespace MonitoR.Configurator
         private System.Windows.Forms.ToolStripMenuItem exportConfigurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.ToolStripMenuItem cpuSensorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem httpSensorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem drivespaceSensorToolStripMenuItem;

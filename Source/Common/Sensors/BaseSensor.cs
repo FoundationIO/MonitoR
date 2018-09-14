@@ -33,10 +33,10 @@ namespace MonitoR.Common.Sensors
             {
                 return ExecuteInternal();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.Error(ex, "Unexpected error when executing base sensor");
-                return ReturnValue.False("Unexpected error when executing base sensor") ;
+                return ReturnValue.False("Unexpected error when executing base sensor");
             }
         }
 
@@ -55,9 +55,9 @@ namespace MonitoR.Common.Sensors
 
             if (CheckInterval <= 0)
                 return ReturnValue.False("Check interval should be less than 1");
-            
+
             if (this.IntervalType == MonitoR.Common.Constants.CheckIntervalType.Seconds)
-            { 
+            {
                 if (CheckInterval > 59)
                     return ReturnValue.False("Check interval should be less than 59 secs");
             }
@@ -80,7 +80,7 @@ namespace MonitoR.Common.Sensors
 
             if (allSensors != null)
             {
-                foreach(var sensor in allSensors)
+                foreach (var sensor in allSensors)
                 {
                     if (this.Id == sensor.Id)
                         continue;
@@ -91,9 +91,14 @@ namespace MonitoR.Common.Sensors
             }
 
             return ReturnValue.True();
+        }
+
+        public virtual string GetDetails()
+        {
+            return "Runs every " + CheckInterval + " " + this.IntervalType.ToString() + "; " +
+                " Notify after " + NotifyIfHappensAfterTimes + " "+ "failures " + "; " +
+                (NotifyByEmail ? " Notify by Email " : "Nofication disable ") + "; ";
+        }
     }
-
-}
-
 
 }

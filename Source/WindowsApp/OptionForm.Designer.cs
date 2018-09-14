@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtEmailTemplateBody = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtEmailTemplateSubject = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbUseHtmlMessage = new System.Windows.Forms.CheckBox();
             this.txtToEmail = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtFromEmail = new System.Windows.Forms.TextBox();
@@ -52,12 +58,6 @@
             this.btCancel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btSendTestEmail = new System.Windows.Forms.Button();
-            this.cbUseHtmlMessage = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txtEmailTemplateSubject = new System.Windows.Forms.TextBox();
-            this.txtEmailTemplateBody = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +95,65 @@
             this.groupBox1.Size = new System.Drawing.Size(613, 498);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(57, 229);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 17);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Password : ";
+            // 
+            // txtEmailTemplateBody
+            // 
+            this.txtEmailTemplateBody.Location = new System.Drawing.Point(189, 326);
+            this.txtEmailTemplateBody.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmailTemplateBody.Multiline = true;
+            this.txtEmailTemplateBody.Name = "txtEmailTemplateBody";
+            this.txtEmailTemplateBody.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtEmailTemplateBody.Size = new System.Drawing.Size(400, 99);
+            this.txtEmailTemplateBody.TabIndex = 9;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(57, 329);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 17);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Body : ";
+            // 
+            // txtEmailTemplateSubject
+            // 
+            this.txtEmailTemplateSubject.Location = new System.Drawing.Point(189, 296);
+            this.txtEmailTemplateSubject.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmailTemplateSubject.Name = "txtEmailTemplateSubject";
+            this.txtEmailTemplateSubject.Size = new System.Drawing.Size(400, 22);
+            this.txtEmailTemplateSubject.TabIndex = 8;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(57, 296);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(67, 17);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Subject : ";
+            // 
+            // cbUseHtmlMessage
+            // 
+            this.cbUseHtmlMessage.AutoSize = true;
+            this.cbUseHtmlMessage.Location = new System.Drawing.Point(189, 262);
+            this.cbUseHtmlMessage.Margin = new System.Windows.Forms.Padding(4);
+            this.cbUseHtmlMessage.Name = "cbUseHtmlMessage";
+            this.cbUseHtmlMessage.Size = new System.Drawing.Size(148, 21);
+            this.cbUseHtmlMessage.TabIndex = 7;
+            this.cbUseHtmlMessage.Text = "Use Html Message";
+            this.cbUseHtmlMessage.UseVisualStyleBackColor = true;
             // 
             // txtToEmail
             // 
@@ -323,64 +382,6 @@
             this.btSendTestEmail.Text = "Send Test Email";
             this.btSendTestEmail.UseVisualStyleBackColor = true;
             this.btSendTestEmail.Click += new System.EventHandler(this.btSendTestEmail_Click);
-            // 
-            // cbUseHtmlMessage
-            // 
-            this.cbUseHtmlMessage.AutoSize = true;
-            this.cbUseHtmlMessage.Location = new System.Drawing.Point(189, 262);
-            this.cbUseHtmlMessage.Margin = new System.Windows.Forms.Padding(4);
-            this.cbUseHtmlMessage.Name = "cbUseHtmlMessage";
-            this.cbUseHtmlMessage.Size = new System.Drawing.Size(148, 21);
-            this.cbUseHtmlMessage.TabIndex = 7;
-            this.cbUseHtmlMessage.Text = "Use Html Message";
-            this.cbUseHtmlMessage.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(57, 296);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 17);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Subject : ";
-            // 
-            // txtEmailTemplateSubject
-            // 
-            this.txtEmailTemplateSubject.Location = new System.Drawing.Point(189, 296);
-            this.txtEmailTemplateSubject.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmailTemplateSubject.Name = "txtEmailTemplateSubject";
-            this.txtEmailTemplateSubject.Size = new System.Drawing.Size(400, 22);
-            this.txtEmailTemplateSubject.TabIndex = 8;
-            // 
-            // txtEmailTemplateBody
-            // 
-            this.txtEmailTemplateBody.Location = new System.Drawing.Point(189, 326);
-            this.txtEmailTemplateBody.Margin = new System.Windows.Forms.Padding(4);
-            this.txtEmailTemplateBody.Multiline = true;
-            this.txtEmailTemplateBody.Name = "txtEmailTemplateBody";
-            this.txtEmailTemplateBody.Size = new System.Drawing.Size(400, 99);
-            this.txtEmailTemplateBody.TabIndex = 9;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(57, 329);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 17);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Body : ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(57, 229);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 17);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Password : ";
             // 
             // OptionForm
             // 
