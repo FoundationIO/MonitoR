@@ -80,6 +80,19 @@ namespace MonitoR
 
         public FileSystemWatcher CreateFileWatcher(string fullFileName, FileSystemEventHandler onFileChange, RenamedEventHandler onFileRename)
         {
+            var fileDir = Path.GetDirectoryName(fullFileName);
+            if (Directory.Exists(fileDir) == false)
+            {
+                try
+                {
+                    Directory.CreateDirectory(fileDir);
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception("Unable to create the configuration path", ex);
+                }
+            }
+
             var watcher = new FileSystemWatcher
             {
                 Path = Path.GetDirectoryName(fullFileName),
