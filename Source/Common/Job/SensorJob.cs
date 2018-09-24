@@ -7,6 +7,7 @@ using MonitoR.Common.Utilities;
 using MonitoR.Common.Service;
 using System.Collections.Generic;
 using System.Dynamic;
+using LiteDB;
 
 namespace MonitoR.Common.Job
 {
@@ -29,23 +30,44 @@ namespace MonitoR.Common.Job
         {
             var startTime = DateTime.Now;
             ReturnValue result;
+            var jobHistory = new JobHistory
+            {
+                StartTime = startTime,
+                SensorId = sensor.Id,
+                SensorName = sensor.Name
+            };
+
             try
             {
                 log.Debug($"Started executing sensor - {sensor.Name} with Id - {sensor.Id}");
                 result = sensor.Execute(appConfig, log);
 
+                jobHistory.EndTime = DateTime.Now;
+
                 if (result == null)
                     result = ReturnValue.False($"Unexpected error when executing sensor - {sensor.Name} with Id - {sensor.Id}");
 
-                if (result.Result == false)
-                    log.Debug($"Completed executing sensor with error - {sensor.Name} with Id - {sensor.Id} - error - {result?.ErrorAndWarningMessageForReporing()}");
+                var str = "";
+                if (result.Result)
+                {
+                    str = $"Completed executing sensor - {sensor.Name} with Id - {sensor.Id}";
+                    log.Debug(str);
+                }
                 else
-                    log.Debug($"Completed executing sensor - {sensor.Name} with Id - {sensor.Id}"); 
+                {
+                    str = $"Completed executing sensor with error - {sensor.Name} with Id - {sensor.Id} - error - {result?.ErrorAndWarningMessageForReporing()}";
+                    log.Error(str);
+                }
+
+                jobHistory.IsSuccess = result.Result;
+                jobHistory.Message = str;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                var str = $"Error executing sensor - {sensor.Name} with Id - {sensor.Id}, Exception - {ex.RecursivelyGetExceptionMessage()}";
                 log.Error(ex, $"Error executing sensor - {sensor.Name} with Id - {sensor.Id}");
-                result = ReturnValue.False($"Error executing sensor - {sensor.Name} with Id - {sensor.Id}, Exception - {ExceptionUtils.RecursivelyGetExceptionMessage(ex)}");
+                result = ReturnValue.False(str);
+                jobHistory.Message = str;
             }
             finally
             {
@@ -60,12 +82,13 @@ namespace MonitoR.Common.Job
             else
             {
                 sensor.ContinousErrorOccurenceCount++;
+                jobHistory.Notified = false;
 
                 if (sensor.ContinousErrorOccurenceCount >= sensor.NotifyIfHappensAfterTimes)
                 {
                     log.Debug($"{sensor.Name} with Id - {sensor.Id}, Continous error occured.");
                     sensor.ContinousErrorOccurenceCount = 0;
-                    if(sensor.NotifyByEmail)
+                    if (sensor.NotifyByEmail)
                     {
                         log.Debug($"Sending mail for failed sensor - {sensor.Name} (Id - {sensor.Id}) .");
                         var param = new TemplateParameters
@@ -79,12 +102,31 @@ namespace MonitoR.Common.Job
                             MessageSuffix = appConfig.EmailTemplateSettings.MessageSuffix,
                             SensorAllErrorMessage = result.ErrorMessages.ToString(""),
                         };
-                        
-                        emailService.SendMail(ApplyAndGetTemplate(param, appConfig.EmailTemplateSettings.DefaultSubject), 
+
+                        var emailResult = emailService.SendMail(ApplyAndGetTemplate(param, appConfig.EmailTemplateSettings.DefaultSubject),
                                               ApplyAndGetTemplate(param, appConfig.EmailTemplateSettings.DefaultTextBody),
                                               ApplyAndGetTemplate(param, appConfig.EmailTemplateSettings.DefaultHtmlBody));
+
+                        jobHistory.Notified = !ReturnValue.IsNullOrFalse(emailResult);
                     }
                 }
+                else
+                {
+                    log.Debug($"Ignoring the Notification as the Thresold ({sensor.ContinousErrorOccurenceCount} / {sensor.NotifyIfHappensAfterTimes}) did not reach for Sensor - {sensor.Name} - {sensor.SensorType} - {sensor.Id}");
+                }
+            }
+
+            try
+            {
+                using (var db = new LiteDatabase(appConfig.GetOrCreateHistoryDbPath()))
+                {
+                    var history = db.GetCollection<JobHistory>("jobhistory");
+                    history.Insert(jobHistory);
+                }
+            }
+            catch(Exception ex)
+            {
+                log.Error(ex,"Error writing to the history table");
             }
         }
 
@@ -101,12 +143,9 @@ namespace MonitoR.Common.Job
             return result;
         }
 
-        public void Stop(bool immediate)
+        public void Stop()
         {
             // Method intentionally left empty.
         }
-
     }
-
-
 }

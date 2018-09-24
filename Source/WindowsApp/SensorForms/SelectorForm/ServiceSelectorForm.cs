@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MonitoR.Common.Utilities;
 
-
 namespace MonitoR.Configurator.SensorForms.SelectorForm
 {
     public partial class ServiceSelectorForm : Form
     {
-        List<string> serviceList = new List<string>();
+        private List<string> serviceList = new List<string>();
+
         public ServiceSelectorForm()
         {
             InitializeComponent();
@@ -23,21 +23,21 @@ namespace MonitoR.Configurator.SensorForms.SelectorForm
             LoadServicesInUI();
         }
 
-        void LoadServicesInUI(string filter = "")
+        private void LoadServicesInUI(string filter = "")
         {
             var itemsToAdd =  new List<string>(serviceList);
             checkedListBox1.Items.Clear();
-            if (filter.IsTrimmedStringNullOrEmpty() == false)
+            if (!filter.IsTrimmedStringNullOrEmpty())
             {
                 itemsToAdd = itemsToAdd.Where(x => x.ToUpper().Contains(filter.ToUpper())).ToList();
             }
+
             foreach(var item in itemsToAdd)
                 checkedListBox1.Items.Add(item);
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
             Refresh();
             txtFilter.Text = "";
             LoadServicesInUI();
@@ -53,7 +53,7 @@ namespace MonitoR.Configurator.SensorForms.SelectorForm
             var result = new List<string>();
             for(int i = 0; i < checkedListBox1.Items.Count;++i)
             {
-                if (checkedListBox1.GetItemChecked(i) == false)
+                if (!checkedListBox1.GetItemChecked(i))
                     continue;
                 result.Add(checkedListBox1.Items[i].ToString());
             }

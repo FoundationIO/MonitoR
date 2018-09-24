@@ -14,6 +14,7 @@ namespace MonitoR.Common.Sensors
         bool Enabled { get; set; }
         int CheckInterval { get; set; }
         CheckIntervalType IntervalType { get; set; }
+
         DateTime LastExecutedDateTime { get; set; }
         double LastExecutionTimeInSecs { get; set; }
         int NotifyIfHappensAfterTimes { get; set; }
@@ -28,6 +29,4 @@ namespace MonitoR.Common.Sensors
         ReturnValue Execute(IAppConfig appConfig, ILog log);
         string GetDetails();
     }
-
-
 }

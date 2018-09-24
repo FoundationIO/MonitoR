@@ -44,17 +44,17 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ntxtCpuUsageExceedValue = new System.Windows.Forms.NumericUpDown();
+            this.ntxtFileSizeExceedValue = new System.Windows.Forms.NumericUpDown();
             this.ntxtNotifyAfterFailureTimes = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSizeUnit = new System.Windows.Forms.ComboBox();
             this.btDelete = new System.Windows.Forms.Button();
             this.btAddItem = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtCheckEveryTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ntxtCpuUsageExceedValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ntxtFileSizeExceedValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtNotifyAfterFailureTimes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -69,48 +69,42 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(23, 199);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(17, 162);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(102, 17);
+            this.label8.Size = new System.Drawing.Size(79, 13);
             this.label8.TabIndex = 31;
             this.label8.Text = "Files to check :";
             // 
             // cklbDrives
             // 
             this.cklbDrives.FormattingEnabled = true;
-            this.cklbDrives.ItemHeight = 16;
-            this.cklbDrives.Location = new System.Drawing.Point(27, 230);
-            this.cklbDrives.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cklbDrives.Location = new System.Drawing.Point(20, 187);
             this.cklbDrives.Name = "cklbDrives";
-            this.cklbDrives.Size = new System.Drawing.Size(560, 100);
+            this.cklbDrives.Size = new System.Drawing.Size(421, 82);
             this.cklbDrives.TabIndex = 6;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(133, 23);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Location = new System.Drawing.Point(100, 19);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(453, 22);
+            this.txtName.Size = new System.Drawing.Size(341, 20);
             this.txtName.TabIndex = 0;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 23);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(17, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 17);
+            this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 28;
             this.label7.Text = "Name";
             // 
             // cbEnabled
             // 
             this.cbEnabled.AutoSize = true;
-            this.cbEnabled.Location = new System.Drawing.Point(27, 416);
-            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEnabled.Location = new System.Drawing.Point(20, 338);
             this.cbEnabled.Name = "cbEnabled";
-            this.cbEnabled.Size = new System.Drawing.Size(82, 21);
+            this.cbEnabled.Size = new System.Drawing.Size(65, 17);
             this.cbEnabled.TabIndex = 10;
             this.cbEnabled.Text = "Enabled";
             this.cbEnabled.UseVisualStyleBackColor = true;
@@ -118,20 +112,18 @@
             // cbNotifyByEmail
             // 
             this.cbNotifyByEmail.AutoSize = true;
-            this.cbNotifyByEmail.Location = new System.Drawing.Point(27, 367);
-            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbNotifyByEmail.Location = new System.Drawing.Point(20, 298);
             this.cbNotifyByEmail.Name = "cbNotifyByEmail";
-            this.cbNotifyByEmail.Size = new System.Drawing.Size(123, 21);
+            this.cbNotifyByEmail.Size = new System.Drawing.Size(95, 17);
             this.cbNotifyByEmail.TabIndex = 9;
             this.cbNotifyByEmail.Text = "Notify by Email";
             this.cbNotifyByEmail.UseVisualStyleBackColor = true;
             // 
             // ntxtCheckEveryTime
             // 
-            this.ntxtCheckEveryTime.Location = new System.Drawing.Point(133, 69);
-            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtCheckEveryTime.Location = new System.Drawing.Point(100, 56);
             this.ntxtCheckEveryTime.Name = "ntxtCheckEveryTime";
-            this.ntxtCheckEveryTime.Size = new System.Drawing.Size(76, 22);
+            this.ntxtCheckEveryTime.Size = new System.Drawing.Size(57, 20);
             this.ntxtCheckEveryTime.TabIndex = 1;
             // 
             // cmbTimeType
@@ -141,19 +133,18 @@
             this.cmbTimeType.Items.AddRange(new object[] {
             "secs",
             "mins",
-            "hours"});
-            this.cmbTimeType.Location = new System.Drawing.Point(217, 69);
-            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            "hours",
+            "days"});
+            this.cmbTimeType.Location = new System.Drawing.Point(163, 56);
             this.cmbTimeType.Name = "cmbTimeType";
-            this.cmbTimeType.Size = new System.Drawing.Size(85, 24);
+            this.cmbTimeType.Size = new System.Drawing.Size(65, 21);
             this.cmbTimeType.TabIndex = 2;
             // 
             // btOk
             // 
-            this.btOk.Location = new System.Drawing.Point(405, 537);
-            this.btOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btOk.Location = new System.Drawing.Point(304, 436);
             this.btOk.Name = "btOk";
-            this.btOk.Size = new System.Drawing.Size(100, 28);
+            this.btOk.Size = new System.Drawing.Size(75, 23);
             this.btOk.TabIndex = 11;
             this.btOk.Text = "Ok";
             this.btOk.UseVisualStyleBackColor = true;
@@ -162,10 +153,9 @@
             // btCancel
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btCancel.Location = new System.Drawing.Point(529, 537);
-            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancel.Location = new System.Drawing.Point(397, 436);
             this.btCancel.Name = "btCancel";
-            this.btCancel.Size = new System.Drawing.Size(100, 28);
+            this.btCancel.Size = new System.Drawing.Size(75, 23);
             this.btCancel.TabIndex = 12;
             this.btCancel.Text = "Cancel";
             this.btCancel.UseVisualStyleBackColor = true;
@@ -175,9 +165,8 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(0, 0);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(645, 22);
+            this.label4.Size = new System.Drawing.Size(484, 18);
             this.label4.TabIndex = 37;
             this.label4.Text = "File Size Sensor";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -185,62 +174,56 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 165);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(17, 134);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(232, 17);
+            this.label5.Size = new System.Drawing.Size(175, 13);
             this.label5.TabIndex = 25;
             this.label5.Text = "Alert when File size usage exceeds ";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 71);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(17, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Check every";
             // 
-            // ntxtCpuUsageExceedValue
+            // ntxtFileSizeExceedValue
             // 
-            this.ntxtCpuUsageExceedValue.Location = new System.Drawing.Point(264, 162);
-            this.ntxtCpuUsageExceedValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ntxtCpuUsageExceedValue.Name = "ntxtCpuUsageExceedValue";
-            this.ntxtCpuUsageExceedValue.Size = new System.Drawing.Size(76, 22);
-            this.ntxtCpuUsageExceedValue.TabIndex = 4;
+            this.ntxtFileSizeExceedValue.Location = new System.Drawing.Point(198, 132);
+            this.ntxtFileSizeExceedValue.Name = "ntxtFileSizeExceedValue";
+            this.ntxtFileSizeExceedValue.Size = new System.Drawing.Size(57, 20);
+            this.ntxtFileSizeExceedValue.TabIndex = 4;
             // 
             // ntxtNotifyAfterFailureTimes
             // 
-            this.ntxtNotifyAfterFailureTimes.Location = new System.Drawing.Point(133, 113);
-            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtNotifyAfterFailureTimes.Location = new System.Drawing.Point(100, 92);
             this.ntxtNotifyAfterFailureTimes.Name = "ntxtNotifyAfterFailureTimes";
-            this.ntxtNotifyAfterFailureTimes.Size = new System.Drawing.Size(76, 22);
+            this.ntxtNotifyAfterFailureTimes.Size = new System.Drawing.Size(57, 20);
             this.ntxtNotifyAfterFailureTimes.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 116);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(17, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 17);
+            this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 21;
             this.label2.Text = "Notify after ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(213, 116);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(160, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 17);
+            this.label3.Size = new System.Drawing.Size(89, 13);
             this.label3.TabIndex = 22;
             this.label3.Text = "continous failures";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbSizeUnit);
             this.groupBox1.Controls.Add(this.btDelete);
             this.groupBox1.Controls.Add(this.btAddItem);
             this.groupBox1.Controls.Add(this.label8);
@@ -253,41 +236,37 @@
             this.groupBox1.Controls.Add(this.cmbTimeType);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.ntxtCpuUsageExceedValue);
+            this.groupBox1.Controls.Add(this.ntxtFileSizeExceedValue);
             this.groupBox1.Controls.Add(this.ntxtNotifyAfterFailureTimes);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(16, 54);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 44);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(613, 458);
+            this.groupBox1.Size = new System.Drawing.Size(460, 372);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             // 
-            // comboBox1
+            // cbSizeUnit
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbSizeUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSizeUnit.FormattingEnabled = true;
+            this.cbSizeUnit.Items.AddRange(new object[] {
             "KB",
             "MB",
             "GB",
             "TB"});
-            this.comboBox1.Location = new System.Drawing.Point(348, 161);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(85, 24);
-            this.comboBox1.TabIndex = 5;
+            this.cbSizeUnit.Location = new System.Drawing.Point(261, 131);
+            this.cbSizeUnit.Name = "cbSizeUnit";
+            this.cbSizeUnit.Size = new System.Drawing.Size(65, 21);
+            this.cbSizeUnit.TabIndex = 5;
             // 
             // btDelete
             // 
             this.btDelete.ImageIndex = 1;
             this.btDelete.ImageList = this.imageList1;
-            this.btDelete.Location = new System.Drawing.Point(531, 353);
-            this.btDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btDelete.Location = new System.Drawing.Point(398, 287);
             this.btDelete.Name = "btDelete";
-            this.btDelete.Size = new System.Drawing.Size(57, 28);
+            this.btDelete.Size = new System.Drawing.Size(43, 23);
             this.btDelete.TabIndex = 8;
             this.btDelete.UseVisualStyleBackColor = true;
             this.btDelete.Click += new System.EventHandler(this.BtDelete_Click);
@@ -296,10 +275,9 @@
             // 
             this.btAddItem.ImageIndex = 0;
             this.btAddItem.ImageList = this.imageList1;
-            this.btAddItem.Location = new System.Drawing.Point(465, 353);
-            this.btAddItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAddItem.Location = new System.Drawing.Point(349, 287);
             this.btAddItem.Name = "btAddItem";
-            this.btAddItem.Size = new System.Drawing.Size(57, 28);
+            this.btAddItem.Size = new System.Drawing.Size(43, 23);
             this.btAddItem.TabIndex = 7;
             this.btAddItem.UseVisualStyleBackColor = true;
             this.btAddItem.Click += new System.EventHandler(this.BtAddItem_Click);
@@ -310,15 +288,14 @@
             // 
             // FileSizeSensorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 569);
+            this.ClientSize = new System.Drawing.Size(484, 462);
             this.Controls.Add(this.btOk);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FileSizeSensorForm";
@@ -326,7 +303,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "File Size Sensor";
             ((System.ComponentModel.ISupportInitialize)(this.ntxtCheckEveryTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ntxtCpuUsageExceedValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ntxtFileSizeExceedValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtNotifyAfterFailureTimes)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -352,12 +329,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown ntxtCpuUsageExceedValue;
+        private System.Windows.Forms.NumericUpDown ntxtFileSizeExceedValue;
         private System.Windows.Forms.NumericUpDown ntxtNotifyAfterFailureTimes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSizeUnit;
     }
 }

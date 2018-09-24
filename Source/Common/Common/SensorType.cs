@@ -7,7 +7,9 @@
         Ftp,
         Drivespace,
         FolderSize,
+        FolderCheck,
         FileSize,
+        FileCheck,
         Cpu,
         Ram,
         Service,
@@ -17,5 +19,4 @@
         IISWebsite,
         Ping
     }
-
 }

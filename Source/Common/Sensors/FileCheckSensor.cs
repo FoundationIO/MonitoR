@@ -9,15 +9,14 @@ using System;
 
 namespace MonitoR.Common.Sensors
 {
-    public class FileSizeSensor : BaseSensor
+    public class FileCheckSensor : BaseSensor
     {
-        public FileSizeSensor()
+        public FileCheckSensor()
         {
-            SensorType = SensorType.FileSize;
+            SensorType = SensorType.FileCheck;
         }
 
-        public int SizeToCheck { get; set; } = 1;
-        public SizeUnitType SizeToCheckUnit { get; set; } = SizeUnitType.MB;
+        public int SizeToCheckInMB { get; set; } = 1024;
         public bool IgnoreIfFileDoesNotExist { get; set; } = false;
 
         public List<string> Files { get; set; } = new List<string>();
@@ -31,27 +30,14 @@ namespace MonitoR.Common.Sensors
                 try
                 {
                     var fi = new FileInfo(file);
-                    if ((!fi.Exists) && (!IgnoreIfFileDoesNotExist))
+                    if (!fi.Exists)
                     {
                         errorList.AppendLine($"File {file} does not exists");
-                        continue;
                     }
                 }
                 catch (Exception ex)
                 {
-                    if (!IgnoreIfFileDoesNotExist)
-                    {
-                        errorList.AppendLine($"File {file} is not accesible - {ex.RecursivelyGetExceptionMessage()}");
-                    }
-                    continue;
-                }
-
-                var fileSize = FileUtils.FileSize(file);
-
-                var fileSizeInSizeUnit = SizeToCheckUnit.ToSizeUnitValue(fileSize);
-                if (fileSizeInSizeUnit > SizeToCheck)
-                {
-                    errorList.AppendLine($"File {file} is of size {fileSizeInSizeUnit} {SizeToCheckUnit} and it exceeds  {SizeToCheck} {SizeToCheckUnit}");
+                    errorList.AppendLine($"File {file} is not accesible - {ex.RecursivelyGetExceptionMessage()}");
                 }
             }
             if (errorList.Length == 0)
@@ -65,15 +51,7 @@ namespace MonitoR.Common.Sensors
             var result = base.IsValid(allSensors);
 
             if (result?.Result != true)
-            {
                 return result;
-            }
-
-            if (SizeToCheck <= 0)
-                return ReturnValue.False("Size should not be less than 1");
-
-            if (SizeToCheck >= 1024)
-                return ReturnValue.False("Size should not be less than 1024");
 
             if (Files == null || Files.Count == 0)
                 return ReturnValue.False("You need to select atleast one file to check");

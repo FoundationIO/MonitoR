@@ -36,7 +36,7 @@ namespace MonitoR.Common.Sensors
                     using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
                     {
                         var isSucess = response.StatusCode == FtpStatusCode.CommandOK;
-                        if (isSucess == false)
+                        if (!isSucess)
                             errorList.AppendLine($"StatusCode =  {response.StatusCode}");
                     }
                 }
@@ -57,7 +57,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (DefaultTimeoutInSec < 0)
@@ -65,13 +65,11 @@ namespace MonitoR.Common.Sensors
 
             if (!(RequestMethod == "HEAD" || RequestMethod == "GET" || RequestMethod == "POST"))
                 return ReturnValue.False("Only HEAD, GET and POST operations are allowed");
-        
+
             if (Servers == null || Servers.Count == 0)
                 return ReturnValue.False("You need to select atleast one drive to check");
-            
+
             return ReturnValue.True();
         }
     }
-
-
 }

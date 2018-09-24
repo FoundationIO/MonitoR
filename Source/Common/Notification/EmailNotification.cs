@@ -12,5 +12,4 @@
         public string ServerUserPassword { get; set; }
         public int ServerPortNumber { get; set; }
     }
-
 }

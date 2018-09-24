@@ -25,18 +25,18 @@ namespace MonitoR.Common.Infrastructure
             if (File.Exists(appSettingFile))
             {
                 var appSettingsFromFile = JsonUtils.Deserialize<BaseAppConfig>(File.ReadAllText(appSettingFile));
-                this.Update(appSettingsFromFile);
+                Update(appSettingsFromFile);
             }
         }
 
         public string GetMonitorSettingsFile()
         {
-            return GetConfigFileName("MonitorSensorSettings.json");
+            return GetConfigFilePathFromKnownFolders("MonitorSensorSettings.json");
         }
 
         public string GetAppSettingsFile()
         {
-            return GetConfigFileName("ServiceMonitorApplicationConfiguration.json");
+            return GetConfigFilePathFromKnownFolders("ServiceMonitorApplicationConfiguration.json");
         }
 
         public bool SaveAppSettings()
@@ -64,7 +64,7 @@ namespace MonitoR.Common.Infrastructure
             {
                 var itemFromFile = JsonUtils.Deserialize<BaseAppConfig>(File.ReadAllText(fileName));
                 if (itemFromFile != null)
-                    this.Update(itemFromFile);
+                    Update(itemFromFile);
             }
             return true;
         }
@@ -97,7 +97,6 @@ namespace MonitoR.Common.Infrastructure
             return true;
         }
 
-
         public string GetLogFolderPath()
         {
             var commonpath = GetFolderPath(SpecialFolder.CommonApplicationData);
@@ -105,7 +104,19 @@ namespace MonitoR.Common.Infrastructure
             return path;
         }
 
-        public string GetConfigFileName(string fileName)
+        public string GetOrCreateHistoryDbPath()
+        {
+            var commonpath = GetFolderPath(SpecialFolder.CommonApplicationData);
+            var path = Path.Combine(commonpath, "MonitoR", "history.lite-db");
+            var dir = Path.GetDirectoryName(path);
+            if (!Directory.Exists(dir))
+            {
+                Directory.CreateDirectory(dir);
+            }
+            return path;
+        }
+
+        public string GetConfigFilePathFromKnownFolders(string fileName)
         {
             var pathSections = new List<string> { "Configuration", fileName };
             foreach (var idx in Enumerable.Range(0, 10))
@@ -144,124 +155,92 @@ namespace MonitoR.Common.Infrastructure
             return AddOrRemoveMonitor(false, iSensor);
         }
 
+        public bool AddOrRemoveMonitorInternal<T>(List<T> lst,bool isAdd, ISensor iSensor) where T : class , ISensor
+        {
+            if (!(iSensor is T sensor))
+                return false;
+
+            if (isAdd)
+            {
+                lst.Add(sensor);
+            }
+            else
+            {
+                lst.RemoveAll(x => x.Id == iSensor.Id);
+            }
+
+            return true;
+        }
+
         public bool AddOrRemoveMonitor(bool isAdd,ISensor iSensor)
         {
             switch (iSensor.SensorType)
             {
                 case SensorType.Cpu:
                     {
-                        var sensor = iSensor as CpuSensor;
-                        if (isAdd)
-                            MonitorSettings.CpuSensors.Add(sensor);
-                        else
-                            MonitorSettings.CpuSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<CpuSensor>(MonitorSettings.CpuSensors, isAdd, iSensor);
                     }
                 case SensorType.Http:
                     {
-                        if (isAdd)
-                            MonitorSettings.HttpSensors.Add(iSensor as HttpSensor);
-                        else
-                            MonitorSettings.HttpSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<HttpSensor>(MonitorSettings.HttpSensors, isAdd, iSensor);
                     }
                 case SensorType.Ftp:
                     {
-                        if (isAdd)
-                            MonitorSettings.FtpSensors.Add(iSensor as FtpSensor);
-                        else
-                            MonitorSettings.FtpSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<FtpSensor>(MonitorSettings.FtpSensors, isAdd, iSensor);
                     }
                 case SensorType.Drivespace:
                     {
-                        if (isAdd)
-                            MonitorSettings.DrivespaceSensors.Add(iSensor as DriveSpaceSensor);
-                        else
-                            MonitorSettings.DrivespaceSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<DriveSpaceSensor>(MonitorSettings.DrivespaceSensors, isAdd, iSensor);
                     }
                 case SensorType.FolderSize:
                     {
-                        if (isAdd)
-                            MonitorSettings.FolderSizeSensors.Add(iSensor as FolderSizeSensor);
-                        else
-                            MonitorSettings.FolderSizeSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<FolderSizeSensor>(MonitorSettings.FolderSizeSensors, isAdd, iSensor);
                     }
                 case SensorType.FileSize:
                     {
-                        if (isAdd)
-                            MonitorSettings.FileSizeSensors.Add(iSensor as FileSizeSensor);
-                        else
-                            MonitorSettings.FileSizeSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<FileSizeSensor>(MonitorSettings.FileSizeSensors, isAdd, iSensor);
+                    }
+                case SensorType.FolderCheck:
+                    {
+                        return AddOrRemoveMonitorInternal<FolderCheckSensor>(MonitorSettings.FolderCheckSensors, isAdd, iSensor);
+                    }
+                case SensorType.FileCheck:
+                    {
+                        return AddOrRemoveMonitorInternal<FileCheckSensor>(MonitorSettings.FileCheckSensors, isAdd, iSensor);
                     }
                 case SensorType.Ram:
                     {
-                        if (isAdd)
-                            MonitorSettings.RamSensors.Add(iSensor as RamSensor);
-                        else
-                            MonitorSettings.RamSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<RamSensor>(MonitorSettings.RamSensors, isAdd, iSensor);
                     }
                 case SensorType.Service:
                     {
-                        if (isAdd)
-                            MonitorSettings.ServiceSensors.Add(iSensor as ServiceSensor);
-                        else
-                            MonitorSettings.ServiceSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<ServiceSensor>(MonitorSettings.ServiceSensors, isAdd, iSensor);
                     }
                 case SensorType.Process:
                     {
-                        if (isAdd)
-                            MonitorSettings.ProcessSensors.Add(iSensor as ProcessSensor);
-                        else
-                            MonitorSettings.ProcessSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<ProcessSensor>(MonitorSettings.ProcessSensors, isAdd, iSensor);
                     }
                 case SensorType.SqlConnection:
                     {
-                        if (isAdd)
-                            MonitorSettings.SqlConnectionSensors.Add(iSensor as SqlConnectionSensor);
-                        else
-                            MonitorSettings.SqlConnectionSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<SqlConnectionSensor>(MonitorSettings.SqlConnectionSensors, isAdd, iSensor);
                     }
                 case SensorType.IISApplicationPool:
                     {
-                        if (isAdd)
-                            MonitorSettings.IISApplicationPoolSensors.Add(iSensor as IISApplicationPoolSensor);
-                        else
-                            MonitorSettings.IISApplicationPoolSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<IISApplicationPoolSensor>(MonitorSettings.IISApplicationPoolSensors, isAdd, iSensor);
                     }
                 case SensorType.IISWebsite:
                     {
-                        if (isAdd)
-                            MonitorSettings.IISWebsiteSensors.Add(iSensor as IISWebsiteSensor);
-                        else
-                            MonitorSettings.IISWebsiteSensors.RemoveAll(x=> x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<IISWebsiteSensor>(MonitorSettings.IISWebsiteSensors, isAdd, iSensor);
                     }
                 case SensorType.Ping:
                     {
-                        if (isAdd)
-                            MonitorSettings.PingSensors.Add(iSensor as PingSensor);
-                        else
-                            MonitorSettings.PingSensors.RemoveAll(x => x.Id == iSensor.Id);
-                        break;
+                        return AddOrRemoveMonitorInternal<PingSensor>(MonitorSettings.PingSensors, isAdd, iSensor);
                     }
                 default:
                     {
                         return false;
                     }
             }
-
-            return true;
         }
-
-
     }
 }

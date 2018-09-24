@@ -14,7 +14,8 @@ namespace MonitoR.WindowsService
 {
     public static class Program
     {
-        static readonly Container container = new Container();
+        private static readonly Container container = new Container();
+
         static Program()
         {
             container.RegisterSingleton<IAppConfig, AppConfig>();
@@ -23,7 +24,7 @@ namespace MonitoR.WindowsService
             container.Verify();
         }
 
-        static void Main()
+        public static void Main()
         {
             var log = container.GetInstance<ILog>();
             var program = new ServiceProgram(container.GetInstance<IAppConfig>(), log, container.GetInstance<IEmailService>());

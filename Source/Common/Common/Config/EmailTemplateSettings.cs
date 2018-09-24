@@ -12,7 +12,5 @@ namespace MonitoR.Common.Infrastructure
         public string DefaultHtmlBody { get; set; } =  DefaultEmailTemplateText.HtmlBody;
         public string MessagePrefix { get; set; } = DefaultEmailTemplateText.MessagePrefix;
         public string MessageSuffix { get; set; } = DefaultEmailTemplateText.MessageSuffix;
-
     }
-
 }

@@ -14,8 +14,9 @@ namespace MonitoR.Common.Infrastructure
 
         string GetAppSettingsFile();
         string GetMonitorSettingsFile();
-
         string GetLogFolderPath();
+        string GetOrCreateHistoryDbPath();
+        string GetConfigFilePathFromKnownFolders(string fileName);
 
         bool SaveAppSettings();
         bool SaveAppSettings(string fileName);

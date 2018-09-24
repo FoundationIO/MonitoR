@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\JobHistory.cs" />
+    <Compile Include="Common\SizeUnitType.cs" />
     <Compile Include="Common\TemplateParameters.cs" />
     <Compile Include="Common\Config\MonitorSettings.cs" />
     <Compile Include="Constants\DefaultEmailTemplateText.cs" />
@@ -63,7 +65,6 @@
     <Compile Include="Infrastructure\IAppConfig.cs" />
     <Compile Include="Infrastructure\ILog.cs" />
     <Compile Include="Infrastructure\Log.cs" />
-    <Compile Include="Infrastructure\SampleSettingsGenerator.cs" />
     <Compile Include="Job\JobRegistry.cs" />
     <Compile Include="Job\SensorJob.cs" />
     <Compile Include="Notification\DbNotification.cs" />
@@ -73,7 +74,9 @@
     <Compile Include="Sensors\BaseSensor.cs" />
     <Compile Include="Sensors\CpuSensor.cs" />
     <Compile Include="Sensors\DriveSpaceSensor.cs" />
+    <Compile Include="Sensors\FileCheckSensor.cs" />
     <Compile Include="Sensors\FileSizeSensor.cs" />
+    <Compile Include="Sensors\FolderCheckSensor.cs" />
     <Compile Include="Sensors\FolderSizeSensor.cs" />
     <Compile Include="Sensors\FtpSensor.cs" />
     <Compile Include="Sensors\HttpSensor.cs" />

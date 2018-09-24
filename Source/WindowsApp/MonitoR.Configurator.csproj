@@ -89,11 +89,23 @@
     <Compile Include="SensorForms\DriveSpaceSensorForm.Designer.cs">
       <DependentUpon>DriveSpaceSensorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SensorForms\FileCheckSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\FileCheckSensorForm.Designer.cs">
+      <DependentUpon>FileCheckSensorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SensorForms\FileSizeSensorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SensorForms\FileSizeSensorForm.Designer.cs">
       <DependentUpon>FileSizeSensorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SensorForms\FolderCheckSensorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SensorForms\FolderCheckSensorForm.Designer.cs">
+      <DependentUpon>FolderCheckSensorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SensorForms\FolderSizeSensorForm.cs">
       <SubType>Form</SubType>
@@ -193,8 +205,15 @@
     <EmbeddedResource Include="SensorForms\DriveSpaceSensorForm.resx">
       <DependentUpon>DriveSpaceSensorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\FileCheckSensorForm.resx">
+      <DependentUpon>FileCheckSensorForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="SensorForms\FileSizeSensorForm.resx">
       <DependentUpon>FileSizeSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SensorForms\FolderCheckSensorForm.resx">
+      <DependentUpon>FolderCheckSensorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SensorForms\FolderSizeSensorForm.resx">
       <DependentUpon>FolderSizeSensorForm.cs</DependentUpon>

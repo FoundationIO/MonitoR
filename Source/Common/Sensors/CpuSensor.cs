@@ -17,7 +17,7 @@ namespace MonitoR.Common.Sensors
 
         public override ReturnValue Execute(IAppConfig appConfig, ILog log)
         {
-            var cpuPercent = MiniDiagnostics.Performance.CpuCurrentUsage();                          
+            var cpuPercent = MiniDiagnostics.Performance.CpuCurrentUsage();
             if (cpuPercent > PercentToCheck)
                 return ReturnValue.False($"CPU usage percentage is {cpuPercent} and it exceeds {PercentToCheck}");
             else
@@ -28,8 +28,10 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
+            {
                 return result;
+            }
 
             if (PercentToCheck <= 0)
                 return ReturnValue.False("Percent To Check should not be less than 1");
@@ -40,6 +42,4 @@ namespace MonitoR.Common.Sensors
             return ReturnValue.True();
         }
     }
-
-
 }

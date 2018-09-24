@@ -26,14 +26,13 @@ namespace MonitoR.Common.Sensors
                 return ReturnValue.False($"Ram usage percentage is {ramUsage}% and it exceeds {PercentToCheck}%");
             else
                 return ReturnValue.True();
-
         }
 
         public override ReturnValue IsValid(List<ISensor> allSensors)
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (PercentToCheck <= 0)
@@ -45,6 +44,4 @@ namespace MonitoR.Common.Sensors
             return ReturnValue.True();
         }
     }
-
-
 }

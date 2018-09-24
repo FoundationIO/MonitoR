@@ -1,4 +1,5 @@
-﻿using MonitoR.Common.Constants;
+﻿using MonitoR.Common.Common;
+using MonitoR.Common.Constants;
 using MonitoR.Common.Sensors;
 using MonitoR.Common.Utilities;
 using MonitoR.Configurator.Utils;
@@ -16,21 +17,21 @@ namespace MonitoR.Configurator.SensorForms
 {
     public partial class HttpSensorForm : Form
     {
-        private CrudType crudType;
-        public HttpSensor Sensor { get; private set; }
-        public List<ISensor> ExistingSensors { get; private set; }
+        private readonly CrudType crudType;
+        public HttpSensor Sensor { get; }
+        public List<ISensor> ExistingSensors { get; }
 
         public HttpSensorForm(CrudType crudType, HttpSensor sensor, List<ISensor> existingSensors)
         {
-            this.Sensor = sensor;
-            this.ExistingSensors = existingSensors;
+            Sensor = sensor;
+            ExistingSensors = existingSensors;
             this.crudType = crudType;
             InitializeComponent();
             InitCustomCode();
 
             if (crudType == CrudType.Add)
             {
-                cmbTimeType.SelectedIndex = 0;
+                cmbTimeType.SelectedIndex = (int)CheckIntervalType.Minutes;
                 Sensor.Id = Guid.NewGuid();
             }
 
@@ -91,14 +92,14 @@ namespace MonitoR.Configurator.SensorForms
         private void BtOk_Click(object sender, EventArgs e)
         {
             UpdateDataFromUI();
-            var result = this.Sensor.IsValid(ExistingSensors);
-            if (result == null || result.Result == false)
+            var result = Sensor.IsValid(ExistingSensors);
+            if (ReturnValue.IsNullOrFalse(result))
             {
                 MessageBox.Show(result != null ? result.ErrorMessages.ToString(" ") : "Invalid Option");
                 return;
             }
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -111,7 +112,7 @@ namespace MonitoR.Configurator.SensorForms
                 return;
             }
 
-            if (ValidationUtils.IsUrlValid(url) == false)
+            if (!ValidationUtils.IsUrlValid(url))
             {
                 MessageBox.Show($"{url} is not a valid Url");
                 return;
@@ -125,7 +126,6 @@ namespace MonitoR.Configurator.SensorForms
                 return;
 
             cklbDrives.Items.RemoveAt(cklbDrives.SelectedIndex);
-
         }
 
         protected override void OnShown(EventArgs e)

@@ -66,7 +66,9 @@ namespace MonitoR.Configurator
             this.cpuSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.drivespaceSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSizeSensorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileCheckSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderSizeSensorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderCheckSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ftpSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.httpSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iISApplicationPoolSensorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -170,7 +172,7 @@ namespace MonitoR.Configurator
             this.openLogFolderToolStripMenuItem.Name = "openLogFolderToolStripMenuItem";
             this.openLogFolderToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.openLogFolderToolStripMenuItem.Text = "Open Log Folder";
-            this.openLogFolderToolStripMenuItem.Click += new System.EventHandler(this.openLogFolderToolStripMenuItem_Click);
+            this.openLogFolderToolStripMenuItem.Click += new System.EventHandler(this.OpenLogFolderToolStripMenuItem_Click);
             // 
             // openSettingsToolStripMenuItem
             // 
@@ -196,7 +198,7 @@ namespace MonitoR.Configurator
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -353,7 +355,9 @@ namespace MonitoR.Configurator
             this.cpuSensorToolStripMenuItem,
             this.drivespaceSensorToolStripMenuItem,
             this.fileSizeSensorToolStripMenuItem1,
+            this.fileCheckSensorToolStripMenuItem,
             this.folderSizeSensorToolStripMenuItem1,
+            this.folderCheckSensorToolStripMenuItem,
             this.ftpSensorToolStripMenuItem,
             this.httpSensorToolStripMenuItem,
             this.iISApplicationPoolSensorToolStripMenuItem,
@@ -391,12 +395,26 @@ namespace MonitoR.Configurator
             this.fileSizeSensorToolStripMenuItem1.Text = "File size sensor";
             this.fileSizeSensorToolStripMenuItem1.Click += new System.EventHandler(this.FileSizeSensorToolStripMenuItem1_Click);
             // 
+            // fileCheckSensorToolStripMenuItem
+            // 
+            this.fileCheckSensorToolStripMenuItem.Name = "fileCheckSensorToolStripMenuItem";
+            this.fileCheckSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.fileCheckSensorToolStripMenuItem.Text = "File check sensor";
+            this.fileCheckSensorToolStripMenuItem.Click += new System.EventHandler(this.FileCheckSensorToolStripMenuItem_Click);
+            // 
             // folderSizeSensorToolStripMenuItem1
             // 
             this.folderSizeSensorToolStripMenuItem1.Name = "folderSizeSensorToolStripMenuItem1";
             this.folderSizeSensorToolStripMenuItem1.Size = new System.Drawing.Size(260, 26);
             this.folderSizeSensorToolStripMenuItem1.Text = "Folder size sensor";
             this.folderSizeSensorToolStripMenuItem1.Click += new System.EventHandler(this.FolderSizeSensorToolStripMenuItem1_Click);
+            // 
+            // folderCheckSensorToolStripMenuItem
+            // 
+            this.folderCheckSensorToolStripMenuItem.Name = "folderCheckSensorToolStripMenuItem";
+            this.folderCheckSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.folderCheckSensorToolStripMenuItem.Text = "Folder check sensor";
+            this.folderCheckSensorToolStripMenuItem.Click += new System.EventHandler(this.FolderCheckSensorToolStripMenuItem_Click);
             // 
             // ftpSensorToolStripMenuItem
             // 
@@ -528,7 +546,7 @@ namespace MonitoR.Configurator
             // tmrServiceStatusCheck
             // 
             this.tmrServiceStatusCheck.Enabled = true;
-            this.tmrServiceStatusCheck.Tick += new System.EventHandler(this.tmrServiceStatusCheck_Tick);
+            this.tmrServiceStatusCheck.Tick += new System.EventHandler(this.TmrServiceStatusCheck_Tick);
             // 
             // lvSensorList
             // 
@@ -661,6 +679,8 @@ namespace MonitoR.Configurator
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripServiceStatusLabel;
         private System.Windows.Forms.Timer tmrServiceStatusCheck;
+        private System.Windows.Forms.ToolStripMenuItem fileCheckSensorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem folderCheckSensorToolStripMenuItem;
     }
 }
 

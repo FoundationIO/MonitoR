@@ -10,6 +10,27 @@ namespace MonitoR.Common.Constants
     {
         Seconds,
         Minutes,
-        Hours        
+        Hours,
+        Days
+    }
+
+    public static class CheckIntervalTypeHeper
+    {
+        public static int CheckIntervalInSeconds(this CheckIntervalType checkIntervalType, int value)
+        {
+            switch(checkIntervalType)
+            {
+                case CheckIntervalType.Minutes:
+                    return value * 60;
+                case CheckIntervalType.Hours:
+                    return value * 60 * 60;
+                case CheckIntervalType.Days:
+                    return value * 60 * 60 * 24;
+
+                case CheckIntervalType.Seconds:
+                default:
+                    return value;
+            }
+        }
     }
 }

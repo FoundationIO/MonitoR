@@ -1,4 +1,5 @@
-﻿using MonitoR.Common.Constants;
+﻿using MonitoR.Common.Common;
+using MonitoR.Common.Constants;
 using MonitoR.Common.Sensors;
 using MonitoR.Common.Utilities;
 using System;
@@ -16,21 +17,21 @@ namespace MonitoR.Configurator.SensorForms
 {
     public partial class DriveSpaceSensorForm : Form
     {
-        private CrudType crudType;
-        public DriveSpaceSensor Sensor { get; private set; }
-        public List<ISensor> ExistingSensors { get; private set; }
+        private readonly CrudType crudType;
+        public DriveSpaceSensor Sensor { get; }
+        public List<ISensor> ExistingSensors { get; }
 
         public DriveSpaceSensorForm(CrudType crudType, DriveSpaceSensor sensor, List<ISensor> existingSensors)
         {
-            this.Sensor = sensor;
-            this.ExistingSensors = existingSensors;        
+            Sensor = sensor;
+            ExistingSensors = existingSensors;
             this.crudType = crudType;
             InitializeComponent();
             InitCustomCode();
 
             if (crudType == CrudType.Add)
             {
-                cmbTimeType.SelectedIndex = 0;
+                cmbTimeType.SelectedIndex = (int)CheckIntervalType.Minutes;
                 Sensor.Id = Guid.NewGuid();
             }
 
@@ -58,13 +59,13 @@ namespace MonitoR.Configurator.SensorForms
             Sensor.Enabled = cbEnabled.Checked;
             Sensor.NotifyByEmail = cbNotifyByEmail.Checked;
 
-            this.Sensor.Drives.Clear();
+            Sensor.Drives.Clear();
 
             for (int i = 0; i < cklbDrives.Items.Count; ++i)
             {
-                if (cklbDrives.GetItemChecked(i) == false)
+                if (!cklbDrives.GetItemChecked(i))
                     continue;
-                this.Sensor.Drives.Add(cklbDrives.Items[i].ToString());
+                Sensor.Drives.Add(cklbDrives.Items[i].ToString());
             }
         }
 
@@ -78,7 +79,7 @@ namespace MonitoR.Configurator.SensorForms
             cbEnabled.Checked = Sensor.Enabled;
             cbNotifyByEmail.Checked = Sensor.NotifyByEmail;
 
-            foreach (var dr in this.Sensor.Drives)
+            foreach (var dr in Sensor.Drives)
             {
                 for (int i = 0; i < cklbDrives.Items.Count; ++i)
                 {
@@ -91,14 +92,14 @@ namespace MonitoR.Configurator.SensorForms
         private void BtOk_Click(object sender, EventArgs e)
         {
             UpdateDataFromUI();
-            var result = this.Sensor.IsValid(ExistingSensors);
-            if (result == null || result.Result == false)
+            var result = Sensor.IsValid(ExistingSensors);
+            if (ReturnValue.IsNullOrFalse(result))
             {
                 MessageBox.Show(result != null ? result.ErrorMessages.ToString(" ") : "Invalid Option");
                 return;
             }
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 

@@ -17,6 +17,7 @@ namespace MonitoR.Common.Sensors
         {
             SensorType = SensorType.IISApplicationPool;
         }
+
         public List<string> ApplicationPools { get; set; } = new List<string>();
 
         public bool RestartIfStopped { get; set; }
@@ -90,7 +91,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (DelayForRecheckingStatus < 0)
@@ -102,5 +103,4 @@ namespace MonitoR.Common.Sensors
             return ReturnValue.True();
         }
     }
-
 }

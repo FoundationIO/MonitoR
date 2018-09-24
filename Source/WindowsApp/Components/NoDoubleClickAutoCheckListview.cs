@@ -13,13 +13,15 @@ namespace MonitoR.Configurator.Components
 
         protected override void OnItemCheck(ItemCheckEventArgs ice)
         {
-            if (this.checkFromDoubleClick)
+            if (checkFromDoubleClick)
             {
                 ice.NewValue = ice.CurrentValue;
-                this.checkFromDoubleClick = false;
+                checkFromDoubleClick = false;
             }
             else
+            {
                 base.OnItemCheck(ice);
+            }
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -27,14 +29,14 @@ namespace MonitoR.Configurator.Components
             // Is this a double-click?
             if ((e.Button == MouseButtons.Left) && (e.Clicks > 1))
             {
-                this.checkFromDoubleClick = true;
+                checkFromDoubleClick = true;
             }
             base.OnMouseDown(e);
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            this.checkFromDoubleClick = false;
+            checkFromDoubleClick = false;
             base.OnKeyDown(e);
         }
     }

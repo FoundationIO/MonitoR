@@ -6,6 +6,4 @@
         public bool RemoteServerUrl { get; set; }
         public bool RemoteServerKey { get; set; }
     }
-
-
 }

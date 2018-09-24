@@ -14,13 +14,13 @@ using System.Windows.Forms;
 
 namespace MonitoR.Configurator.SensorForms
 {
-    public partial class FileSizeSensorForm : Form
+    public partial class FileCheckSensorForm : Form
     {
         private readonly CrudType crudType;
-        public FileSizeSensor Sensor { get; }
+        public FileCheckSensor Sensor { get; }
         public List<ISensor> ExistingSensors { get; }
 
-        public FileSizeSensorForm(CrudType crudType, FileSizeSensor sensor, List<ISensor> existingSensors)
+        public FileCheckSensorForm(CrudType crudType, FileCheckSensor sensor, List<ISensor> existingSensors)
         {
             Sensor = sensor;
             ExistingSensors = existingSensors;
@@ -42,13 +42,6 @@ namespace MonitoR.Configurator.SensorForms
             cklbDrives.Items.Clear();
             txtName.Focus();
             ntxtNotifyAfterFailureTimes.Value = 1;
-
-            cbSizeUnit.Items.Clear();
-            cbSizeUnit.Items.Add(SizeUnitType.KB);
-            var defaultIdx = cbSizeUnit.Items.Add(SizeUnitType.MB);
-            cbSizeUnit.Items.Add(SizeUnitType.GB);
-            cbSizeUnit.Items.Add(SizeUnitType.TB);
-            cbSizeUnit.SelectedIndex = defaultIdx;
         }
 
         public void UpdateDataFromUI()
@@ -64,8 +57,6 @@ namespace MonitoR.Configurator.SensorForms
             }
             Sensor.Enabled = cbEnabled.Checked;
             Sensor.NotifyByEmail = cbNotifyByEmail.Checked;
-            Sensor.SizeToCheck = (int)ntxtFileSizeExceedValue.Value;
-            Sensor.SizeToCheckUnit = (SizeUnitType)cbSizeUnit.SelectedIndex;
         }
 
         public void UpdateUIFromData()
@@ -81,8 +72,6 @@ namespace MonitoR.Configurator.SensorForms
             }
             cbEnabled.Checked = Sensor.Enabled;
             cbNotifyByEmail.Checked = Sensor.NotifyByEmail;
-            ntxtFileSizeExceedValue.Value = Sensor.SizeToCheck;
-            cbSizeUnit.SelectedIndex = (int)Sensor.SizeToCheckUnit;
         }
 
         private void BtOk_Click(object sender, EventArgs e)

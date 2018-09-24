@@ -11,8 +11,7 @@ namespace MonitoR.Common.Utilities
         public static string UTF8ByteArrayToString(Byte[] characters)
         {
             var encoding = new UTF8Encoding();
-            var constructedString = encoding.GetString(characters);
-            return (constructedString);
+            return encoding.GetString(characters);
         }
 
         public static Byte[] StringToUTF8ByteArray(String pXmlString)
@@ -38,9 +37,9 @@ namespace MonitoR.Common.Utilities
             foreach (var item in obj)
             {
                 if (useNewLine)
-                    sb.AppendLine(item + ((pos != obj.Length - 1) ? sep : ""));
+                    sb.Append(item).AppendLine((pos != obj.Length - 1) ? sep : "");
                 else
-                    sb.Append(item + ((pos != obj.Length - 1) ? sep : ""));
+                    sb.Append(item).Append((pos != obj.Length - 1) ? sep : "");
                 pos++;
             }
             return sb.ToString();
@@ -60,7 +59,7 @@ namespace MonitoR.Common.Utilities
 
         public static string FirstChar(this string str)
         {
-            if (str != null && str.Length > 0)
+            if (str?.Length > 0)
                 return str[0].ToString();
             return string.Empty;
         }
@@ -82,9 +81,10 @@ namespace MonitoR.Common.Utilities
                 str = str.Substring(0, str.Length - 1);
             return str;
         }
+
         public static string LastChar(this string str)
         {
-            if (str != null && str.Length > 0)
+            if (str?.Length > 0)
                 return str[str.Length - 1].ToString();
             return string.Empty;
         }
@@ -103,8 +103,7 @@ namespace MonitoR.Common.Utilities
             if (str.IsNullOrEmpty())
                 return str;
             str = AddFirstChar(str, citem);
-            str = RemoveLastChar(str, citem);
-            return str;
+            return RemoveLastChar(str, citem);
         }
 
         public static bool IsTrimmedStringNullOrEmpty(this string str)
@@ -112,6 +111,17 @@ namespace MonitoR.Common.Utilities
             if (string.IsNullOrEmpty(str))
                 return true;
             return string.IsNullOrEmpty(str.Trim());
+        }
+
+        public static bool CaseIgnoreEquals(this string str, string str2)
+        {
+            if (str == str2)
+                return true;
+
+            if (str == null || str2 == null)
+                return false;
+
+            return string.Equals(str.Trim(), str2.Trim(), StringComparison.CurrentCultureIgnoreCase);
         }
     }
 }

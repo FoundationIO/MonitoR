@@ -10,7 +10,7 @@ namespace MonitoR.Common.Constants
     {
         public const string Subject = "[{{MessagePrefix}}] [{{MachineName}}] {{ SensorType }} - {{SensorName}} failed";
         public const string TextBody = "Error occured in [{{MachineName}}] for {{ SensorType }} - {{SensorName}} \n\n {{SensorAllErrorMessage }}";
-        public const string HtmlBody = "<html> <body> <b>Error occured </b> in [{{MachineName}}] for {{ SensorType }} - <b>{{SensorName}}</b>{{SensorAllErrorMessag}} </body> </html>";
+        public const string HtmlBody = "<html> <body> <b>Error occured </b> in [{{MachineName}}] for {{ SensorType }} - <b>{{SensorName}}</b> - {{SensorAllErrorMessage}} </body> </html>";
         public const string MessagePrefix = "MonitoR";
         public const string MessageSuffix = "";
     }

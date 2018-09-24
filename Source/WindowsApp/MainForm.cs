@@ -14,14 +14,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MonitoR.Common.Utilities;
 
 namespace MonitoR.Configurator
 {
     public partial class MainForm : Form
     {
-        IAppConfig appConfig;
-        ILog log;
-        bool newFeatureEnabled = false;
+        private readonly IAppConfig appConfig;
+        private readonly ILog log;
+        private readonly bool newFeatureEnabled = false;
 
         public MainForm(IAppConfig appConfig, ILog log)
         {
@@ -39,28 +40,32 @@ namespace MonitoR.Configurator
             addSensorMenuItem.DropDownItems.Clear();
             AddToolbarMenuItem.DropDownItems.Clear();
 
-            AddMenuItem("Cpu sensor", this.CpuSensorToolStripMenuItem_Click);
-            AddMenuItem("Ram sensor", this.RamSensorToolStripMenuItem_Click);
-            AddMenuItem("Drive space sensor", this.DrivespaceSensorToolStripMenuItem_Click);
+            AddMenuItem("Cpu sensor", CpuSensorToolStripMenuItem_Click);
+            AddMenuItem("Ram sensor", RamSensorToolStripMenuItem_Click);
+            AddMenuItem("Drive space sensor", DrivespaceSensorToolStripMenuItem_Click);
+
+            AddMenuItem("File check sensor", FileCheckSensorToolStripMenuItem_Click);
+            AddMenuItem("Folder check sensor", FolderCheckSensorToolStripMenuItem_Click);
+
+            AddMenuItem("File size sensor", FileSizeSensorToolStripMenuItem1_Click);
+            AddMenuItem("Folder size sensor", FolderSizeSensorToolStripMenuItem1_Click);
+
+            AddMenuItem("Http sensor",HttpSensorToolStripMenuItem_Click);
 
             if (newFeatureEnabled)
             {
-                AddMenuItem("File size sensor", this.FileSizeSensorToolStripMenuItem1_Click);
-                AddMenuItem("Folder size sensor", this.FolderSizeSensorToolStripMenuItem1_Click);
-                AddMenuItem("Ftp sensor", this.FtpSensorToolStripMenuItem_Click);
+                AddMenuItem("Ftp sensor", FtpSensorToolStripMenuItem_Click);
             }
 
-            AddMenuItem("Http sensor",this.HttpSensorToolStripMenuItem_Click);
-            AddMenuItem("Service sensor", this.ServiceSensorToolStripMenuItem_Click);
+            AddMenuItem("Service sensor", ServiceSensorToolStripMenuItem_Click);
+            AddMenuItem("Process sensor", ProcessSensorToolStripMenuItem_Click);
 
             if (newFeatureEnabled)
             {
-                
-                AddMenuItem("Process sensor", this.ProcessSensorToolStripMenuItem_Click);
-                AddMenuItem("Sql Connection sensor", this.SqlConnectionSensorToolStripMenuItem_Click);
-                AddMenuItem("IIS Application Pool sensor", this.IISApplicationPoolSensorToolStripMenuItem_Click);
-                AddMenuItem("IIS Website sensor", this.IISWebsiteSensorToolStripMenuItem_Click);
-                AddMenuItem("Ping sensor", this.PingSensorToolStripMenuItem_Click);
+                AddMenuItem("Sql Connection sensor", SqlConnectionSensorToolStripMenuItem_Click);
+                AddMenuItem("IIS Application Pool sensor", IISApplicationPoolSensorToolStripMenuItem_Click);
+                AddMenuItem("IIS Website sensor", IISWebsiteSensorToolStripMenuItem_Click);
+                AddMenuItem("Ping sensor", PingSensorToolStripMenuItem_Click);
             }
 
             LvSensorList_ItemSelectionChanged(lvSensorList, null);
@@ -78,20 +83,7 @@ namespace MonitoR.Configurator
         private void LoadMonitorSensors()
         {
             lvSensorList.Items.Clear();
-
-            UpdateSensorList(appConfig.MonitorSettings.HttpSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.FtpSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.DrivespaceSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.FolderSizeSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.FileSizeSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.CpuSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.RamSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.ServiceSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.ProcessSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.SqlConnectionSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.IISApplicationPoolSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.IISWebsiteSensors.ToList<ISensor>());
-            UpdateSensorList(appConfig.MonitorSettings.PingSensors.ToList<ISensor>());
+            UpdateSensorList(appConfig.MonitorSettings.GetAllSensors());
         }
 
         private void UpdateSensorList(List<ISensor> sensorList)
@@ -122,7 +114,7 @@ namespace MonitoR.Configurator
         }
 
         private void AddOrEditEditSensor(CrudType crudType, ISensor iSensor)
-        { 
+        {
             switch (iSensor.SensorType)
             {
                 case SensorType.Cpu:
@@ -175,10 +167,30 @@ namespace MonitoR.Configurator
                         }
                         break;
                     }
+                case SensorType.FolderCheck:
+                    {
+                        var sensor = iSensor as FolderCheckSensor;
+                        using (var dlg = new FolderCheckSensorForm(crudType, sensor, appConfig.MonitorSettings.GetAllSensors()))
+                        {
+                            if (dlg.ShowDialog(this) != DialogResult.OK)
+                                return;
+                        }
+                        break;
+                    }
                 case SensorType.FileSize:
                     {
                         var sensor = iSensor as FileSizeSensor;
                         using (var dlg = new FileSizeSensorForm(crudType, sensor, appConfig.MonitorSettings.GetAllSensors()))
+                        {
+                            if (dlg.ShowDialog(this) != DialogResult.OK)
+                                return;
+                        }
+                        break;
+                    }
+                case SensorType.FileCheck:
+                    {
+                        var sensor = iSensor as FileCheckSensor;
+                        using (var dlg = new FileCheckSensorForm(crudType, sensor, appConfig.MonitorSettings.GetAllSensors()))
                         {
                             if (dlg.ShowDialog(this) != DialogResult.OK)
                                 return;
@@ -271,21 +283,38 @@ namespace MonitoR.Configurator
 
         private void ExportConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.saveFileDialog.FileName = "";
-            if (this.saveFileDialog.ShowDialog() != DialogResult.OK)
+            saveFileDialog.FileName = "";
+            if (saveFileDialog.ShowDialog() != DialogResult.OK)
                 return;
-
-            appConfig.SaveMonitorSettings(this.saveFileDialog.FileName);
+            try
+            {
+                appConfig.SaveMonitorSettings(saveFileDialog.FileName);
+                MessageBox.Show($"Successfully exported the sensor settings to file - {saveFileDialog.FileName}");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error when exporting sensor settings to file - {saveFileDialog.FileName} \n {ex.RecursivelyGetExceptionMessage()}" );
+                log.Error(ex,$"Error when exporting sensor settings to file - {saveFileDialog.FileName}");
+            }
         }
 
         private void ImportConfigurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.openFileDialog.FileName = "";
-            if (this.openFileDialog.ShowDialog() != DialogResult.OK)
+            openFileDialog.FileName = "";
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
                 return;
 
-            appConfig.LoadMonitorSettings(this.openFileDialog.FileName);
-            appConfig.SaveMonitorSettings();
+            try
+            {
+                appConfig.LoadMonitorSettings(openFileDialog.FileName);
+                appConfig.SaveMonitorSettings();
+                MessageBox.Show($"Successfully imported the sensor settings from file - {openFileDialog.FileName}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error when importing the sensor settings to file - {openFileDialog.FileName} \n {ex.RecursivelyGetExceptionMessage()}");
+                log.Error(ex, $"Error when importing sensor settings to file - {openFileDialog.FileName}");
+            }
 
             LoadMonitorSensors();
         }
@@ -293,8 +322,7 @@ namespace MonitoR.Configurator
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var optionForm = new OptionForm(appConfig, log))
-            { 
-
+            {
                 if (optionForm.ShowDialog(this) != DialogResult.OK)
                 {
                     return;
@@ -306,7 +334,7 @@ namespace MonitoR.Configurator
 
         private void OpenSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(appConfig.GetAppSettingsFile()) == false)
+            if (!File.Exists(appConfig.GetAppSettingsFile()))
             {
                 MessageBox.Show("Application Option file does not exists yet.");
                 return;
@@ -317,7 +345,7 @@ namespace MonitoR.Configurator
 
         private void OpenMonitorSettingsLocationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (File.Exists(appConfig.GetAppSettingsFile()) == false)
+            if (!File.Exists(appConfig.GetAppSettingsFile()))
             {
                 MessageBox.Show("Monitor settings file does not exists yet.");
                 return;
@@ -394,7 +422,6 @@ namespace MonitoR.Configurator
         private void PingSensorToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             AddSensor(new Common.Sensors.PingSensor());
-
         }
 
         private void EditToolbarMenuItem_Click(object sender, EventArgs e)
@@ -448,40 +475,32 @@ namespace MonitoR.Configurator
             }
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Do you want to close the application ?", "Close confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                e.Cancel = false;
-            }
-            else
-            {
-                e.Cancel = true;
-            }
+            e.Cancel = MessageBox.Show("Do you want to close the application ?", "Close confirmation", MessageBoxButtons.YesNo) != DialogResult.Yes;
         }
 
-        private void openLogFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenLogFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Directory.Exists(appConfig.GetLogFolderPath()) == false || 
-                Directory.EnumerateFiles(appConfig.GetLogFolderPath()).Any() == false)
+            if (!Directory.Exists(appConfig.GetLogFolderPath())
+                || !Directory.EnumerateFiles(appConfig.GetLogFolderPath()).Any())
             {
                 MessageBox.Show("No log are created so far");
                 return;
             }
 
             Process.Start("explorer.exe", appConfig.GetLogFolderPath());
-
         }
 
-        private void tmrServiceStatusCheck_Tick(object sender, EventArgs e)
+        private void TmrServiceStatusCheck_Tick(object sender, EventArgs e)
         {
             var processList = Process.GetProcessesByName("MonitoR.WindowsService");
-            if (processList.Any())
+            if (processList.Length > 0)
             {
                 toolStripServiceStatusLabel.Text = "Status : Monitor Service is running";
                 toolStripServiceStatusLabel.ForeColor = Color.Green;
@@ -491,6 +510,16 @@ namespace MonitoR.Configurator
                 toolStripServiceStatusLabel.Text = "Status : Monitor Service is not running";
                 toolStripServiceStatusLabel.BackColor = Color.PaleVioletRed;
             }
+        }
+
+        private void FileCheckSensorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddSensor(new Common.Sensors.FileCheckSensor());
+        }
+
+        private void FolderCheckSensorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddSensor(new Common.Sensors.FolderCheckSensor());
         }
     }
 }

@@ -14,18 +14,20 @@ namespace MonitoR.Configurator.SensorForms.SelectorForm
 {
     public partial class ProcessSelectorForm : Form
     {
-        List<string> serviceList = new List<string>();
+        private List<string> serviceList = new List<string>();
+
         public ProcessSelectorForm()
         {
             InitializeComponent();
             RefreshItems();
             LoadProcessesInUI();
         }
-        void LoadProcessesInUI(string filter = "")
+
+        private void LoadProcessesInUI(string filter = "")
         {
             var itemsToAdd = new List<string>(serviceList);
             checkedListBox1.Items.Clear();
-            if (filter.IsTrimmedStringNullOrEmpty() == false)
+            if (!filter.IsTrimmedStringNullOrEmpty())
             {
                 itemsToAdd = itemsToAdd.Where(x => x.ToUpper().Contains(filter.ToUpper())).ToList();
             }
@@ -50,7 +52,7 @@ namespace MonitoR.Configurator.SensorForms.SelectorForm
             var result = new List<string>();
             for (int i = 0; i < checkedListBox1.Items.Count; ++i)
             {
-                if (checkedListBox1.GetItemChecked(i) == false)
+                if (!checkedListBox1.GetItemChecked(i))
                     continue;
                 result.Add(checkedListBox1.Items[i].ToString());
             }

@@ -71,7 +71,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(133, 23);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(453, 22);
             this.txtName.TabIndex = 0;
@@ -90,9 +90,9 @@
             // 
             this.cbEnabled.AutoSize = true;
             this.cbEnabled.Location = new System.Drawing.Point(27, 416);
-            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4);
             this.cbEnabled.Name = "cbEnabled";
-            this.cbEnabled.Size = new System.Drawing.Size(82, 21);
+            this.cbEnabled.Size = new System.Drawing.Size(79, 21);
             this.cbEnabled.TabIndex = 11;
             this.cbEnabled.Text = "Enabled";
             this.cbEnabled.UseVisualStyleBackColor = true;
@@ -101,9 +101,9 @@
             // 
             this.cbNotifyByEmail.AutoSize = true;
             this.cbNotifyByEmail.Location = new System.Drawing.Point(27, 367);
-            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4);
             this.cbNotifyByEmail.Name = "cbNotifyByEmail";
-            this.cbNotifyByEmail.Size = new System.Drawing.Size(123, 21);
+            this.cbNotifyByEmail.Size = new System.Drawing.Size(120, 21);
             this.cbNotifyByEmail.TabIndex = 10;
             this.cbNotifyByEmail.Text = "Notify by Email";
             this.cbNotifyByEmail.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@
             // ntxtCheckEveryTime
             // 
             this.ntxtCheckEveryTime.Location = new System.Drawing.Point(133, 69);
-            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4);
             this.ntxtCheckEveryTime.Name = "ntxtCheckEveryTime";
             this.ntxtCheckEveryTime.Size = new System.Drawing.Size(76, 22);
             this.ntxtCheckEveryTime.TabIndex = 1;
@@ -123,9 +123,10 @@
             this.cmbTimeType.Items.AddRange(new object[] {
             "secs",
             "mins",
-            "hours"});
+            "hours",
+            "days"});
             this.cmbTimeType.Location = new System.Drawing.Point(217, 69);
-            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTimeType.Name = "cmbTimeType";
             this.cmbTimeType.Size = new System.Drawing.Size(85, 24);
             this.cmbTimeType.TabIndex = 2;
@@ -133,7 +134,7 @@
             // btOk
             // 
             this.btOk.Location = new System.Drawing.Point(405, 537);
-            this.btOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btOk.Margin = new System.Windows.Forms.Padding(4);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(100, 28);
             this.btOk.TabIndex = 12;
@@ -145,7 +146,7 @@
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Location = new System.Drawing.Point(529, 537);
-            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(100, 28);
             this.btCancel.TabIndex = 13;
@@ -177,7 +178,7 @@
             // ntxtNotifyAfterFailureTimes
             // 
             this.ntxtNotifyAfterFailureTimes.Location = new System.Drawing.Point(133, 113);
-            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4);
             this.ntxtNotifyAfterFailureTimes.Name = "ntxtNotifyAfterFailureTimes";
             this.ntxtNotifyAfterFailureTimes.Size = new System.Drawing.Size(76, 22);
             this.ntxtNotifyAfterFailureTimes.TabIndex = 3;
@@ -226,9 +227,9 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(16, 54);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(613, 458);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
@@ -236,7 +237,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(389, 289);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(81, 22);
             this.textBox4.TabIndex = 9;
@@ -255,9 +256,9 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(27, 293);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(162, 21);
+            this.checkBox1.Size = new System.Drawing.Size(159, 21);
             this.checkBox1.TabIndex = 8;
             this.checkBox1.Text = "Use Integrated Login";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -265,7 +266,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(389, 241);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(200, 22);
             this.textBox3.TabIndex = 7;
@@ -283,7 +284,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(132, 241);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(160, 22);
             this.textBox2.TabIndex = 6;
@@ -301,7 +302,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(389, 192);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 22);
             this.textBox1.TabIndex = 5;
@@ -320,7 +321,7 @@
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(132, 192);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(160, 24);
             this.comboBox1.TabIndex = 4;
@@ -345,7 +346,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SqlConnectionSensorForm";

@@ -19,6 +19,7 @@ namespace MonitoR
         private readonly IAppConfig appConfig;
         private readonly IEmailService emailService;
         private Thread thrd;
+
         public ServiceProgram(IAppConfig appConfig, ILog log, IEmailService emailService)
         {
             this.log = log;
@@ -62,8 +63,7 @@ namespace MonitoR
         protected override void OnStop()
         {
             log.Info($"Stopping:{ServiceName}Service");
-            if(thrd != null)
-                thrd.Abort();
+            thrd?.Abort();
             log.Info($"Service:{ServiceName} stopped");
         }
 
@@ -73,6 +73,7 @@ namespace MonitoR
 
             JobManager.JobStart += (start) =>
             {
+
             };
 
             JobManager.Initialize(new JobRegistry(appConfig,log, emailService));
@@ -81,7 +82,7 @@ namespace MonitoR
         public FileSystemWatcher CreateFileWatcher(string fullFileName, FileSystemEventHandler onFileChange, RenamedEventHandler onFileRename)
         {
             var fileDir = Path.GetDirectoryName(fullFileName);
-            if (Directory.Exists(fileDir) == false)
+            if (!Directory.Exists(fileDir))
             {
                 try
                 {
@@ -111,6 +112,5 @@ namespace MonitoR
 
             return watcher;
         }
-
     }
 }

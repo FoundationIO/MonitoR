@@ -6,10 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MonitoR.Common.Service;
+using MonitoR.Common.Constants;
 
 namespace MonitoR.Common.Job
 {
-
     public class JobRegistry : Registry
     {
         private readonly IAppConfig appConfig;
@@ -17,7 +17,7 @@ namespace MonitoR.Common.Job
         private readonly IEmailService emailService;
 
         public JobRegistry(IAppConfig appConfig, ILog log, IEmailService emailService)
-        {            
+        {
             var settings = appConfig.MonitorSettings;
             this.appConfig = appConfig;
             this.log = log;
@@ -27,36 +27,31 @@ namespace MonitoR.Common.Job
                 return;
 
             NonReentrantAsDefault();
-            AddJob<HttpSensor>(settings.HttpSensors);
-            AddJob<FtpSensor>(settings.FtpSensors);
-            AddJob<DriveSpaceSensor>(settings.DrivespaceSensors);
-            AddJob<FolderSizeSensor>(settings.FolderSizeSensors);
-            AddJob<FileSizeSensor>(settings.FileSizeSensors);
-            AddJob<CpuSensor>(settings.CpuSensors);
-            AddJob<RamSensor>(settings.RamSensors);
-            AddJob<ServiceSensor>(settings.ServiceSensors);
-            AddJob<ProcessSensor>(settings.ProcessSensors);
-            AddJob<SqlConnectionSensor>(settings.SqlConnectionSensors);
-            AddJob<IISApplicationPoolSensor>(settings.IISApplicationPoolSensors);
-            AddJob<IISWebsiteSensor>(settings.IISWebsiteSensors);
-            AddJob<PingSensor>(settings.PingSensors);
+            AddJobs(settings.GetAllSensors());
         }
 
-        private void AddJob<T>(List<T> sensors) where T : BaseSensor
+        private void AddJobs(List<ISensor> sensors)
         {
-            if (sensors == null)
+            if (sensors == null || sensors.Count == 0)
+            {
+                log.Info("No jobs available for scheduling");
                 return;
+            }
 
             foreach (var sensor in sensors)
             {
-                if (!sensor.Enabled)
+                if (sensor == null)
                     continue;
 
-                Schedule(() => new SensorJob(sensor, appConfig, log, emailService)).ToRunNow().AndEvery(sensor.CheckInterval).Seconds();
-            }
+                if (!sensor.Enabled)
+                {
+                    log.Info($"Ignore diabled Job - {sensor.Name} ({sensor.SensorType}) ( {sensor.Id}) - " + sensor.GetDetails());
+                    continue;
+                }
 
+                log.Info($"Scheduling Job - {sensor.Name} ({sensor.SensorType}) ( {sensor.Id}) - " + sensor.GetDetails());
+                Schedule(() => new SensorJob(sensor, appConfig, log, emailService)).ToRunNow().AndEvery(sensor.IntervalType.CheckIntervalInSeconds(sensor.CheckInterval)).Seconds();
+            }
         }
     }
-
-
 }

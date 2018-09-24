@@ -10,6 +10,7 @@ namespace MonitoR.Common.Infrastructure
     {
         private readonly Logger logger = null;
         private readonly IAppConfig appConfig;
+
         public Log(IAppConfig appConfig)
         {
             this.appConfig = appConfig;
@@ -19,7 +20,7 @@ namespace MonitoR.Common.Infrastructure
             var fileTarget = new FileTarget();
             config.AddTarget("file", fileTarget);
             var logDir = appConfig.GetLogFolderPath();
-            fileTarget.FileName = logDir+"/Logs/${shortdate}.log";
+            fileTarget.FileName = logDir+"/${shortdate}.log";
             fileTarget.Layout = "${date}\t${level:uppercase=true}\t${message}";
             fileTarget.ConcurrentWrites = true;
 

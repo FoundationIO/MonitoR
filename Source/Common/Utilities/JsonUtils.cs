@@ -10,14 +10,19 @@ namespace MonitoR.Common.Utilities
 {
     public static class JsonUtils
     {
-        public static string Serialize<T>(T entity, bool prettyPrint = true)
+        public static string Serialize<T>(T entity)
         {
             var stream1 = new MemoryStream();
-            var ser = new DataContractJsonSerializer(typeof(T),new DataContractJsonSerializerSettings {  UseSimpleDictionaryFormat = true });
+            var ser = new DataContractJsonSerializer(typeof(T),new DataContractJsonSerializerSettings
+            {
+                UseSimpleDictionaryFormat = true
+            });
             ser.WriteObject(stream1, entity);
             stream1.Position = 0;
-            var sr = new StreamReader(stream1);
-            return sr.ReadToEnd();
+            using (var sr = new StreamReader(stream1))
+            {
+                return sr.ReadToEnd();
+            }
         }
 
         public static T Deserialize<T>(String pJsonString)

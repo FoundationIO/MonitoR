@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ServiceProcess;
 using System.Text;
 using System.Linq;
+using MonitoR.Common.Utilities;
 
 namespace MonitoR.Common.Sensors
 {
@@ -13,6 +14,7 @@ namespace MonitoR.Common.Sensors
         {
             SensorType = SensorType.Service;
         }
+
         public List<string> Services { get; set; } = new List<string>();
         public bool RestartIfStopped { get; set; }
 
@@ -23,7 +25,7 @@ namespace MonitoR.Common.Sensors
             var services = ServiceController.GetServices();
             foreach (var service in Services)
             {
-                var systemService = services.FirstOrDefault(x => x.DisplayName.Trim().ToUpper().Equals(service.Trim().ToUpper()));
+                var systemService = services.FirstOrDefault(x => x.DisplayName.CaseIgnoreEquals(service));
                 if (systemService == null )
                 {
                     errorList.AppendLine($"Service {service} is not installed");
@@ -35,7 +37,7 @@ namespace MonitoR.Common.Sensors
                     continue;
                 }
 
-                if (RestartIfStopped == false)
+                if (!RestartIfStopped)
                 {
                     errorList.AppendLine($"Service {service} is not running");
                     continue;
@@ -62,7 +64,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (Services == null || Services.Count == 0)
@@ -71,6 +73,4 @@ namespace MonitoR.Common.Sensors
             return ReturnValue.True();
         }
     }
-
-
 }

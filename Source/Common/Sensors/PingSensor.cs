@@ -14,6 +14,7 @@ namespace MonitoR.Common.Sensors
         {
             SensorType = SensorType.Ping;
         }
+
         public List<string> Servers { get; set; } = new List<string>();
         public bool RestartIfStopped { get; set; }
         public int DefaultTimeoutInSec { get; set; } = 0;
@@ -52,7 +53,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (DefaultTimeoutInSec < 0)
@@ -64,6 +65,4 @@ namespace MonitoR.Common.Sensors
             return ReturnValue.True();
         }
     }
-
-
 }

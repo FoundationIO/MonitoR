@@ -7,8 +7,9 @@ namespace MonitoR.Common.Service
 {
     public class EmailService : IEmailService
     {
-        readonly IAppConfig appConfig;
-        readonly ILog log;
+        private readonly IAppConfig appConfig;
+        private readonly ILog log;
+
         public EmailService(IAppConfig appConfig, ILog log)
         {
             this.appConfig = appConfig;
@@ -20,14 +21,14 @@ namespace MonitoR.Common.Service
             ReturnValue result;
             try
             {
-                EmailUtils.SendMail(appConfig.EmailServerSettings.FromEmail, 
-                                    appConfig.EmailServerSettings.ToEmail, 
+                EmailUtils.SendMail(appConfig.EmailServerSettings.FromEmail,
+                                    appConfig.EmailServerSettings.ToEmail,
                                     subject,
                                     appConfig.EmailServerSettings.UseHtmlMail,
                                     appConfig.EmailServerSettings.UseHtmlMail ? htmlBody : textBody,
                                     appConfig.EmailServerSettings.Server,
                                     appConfig.EmailServerSettings.Port,
-                                    appConfig.EmailServerSettings.UserName, 
+                                    appConfig.EmailServerSettings.UserName,
                                     appConfig.EmailServerSettings.Password,
                                     appConfig.EmailServerSettings.UseSSL,
                                     appConfig.EmailServerSettings.TimeoutInSec);

@@ -16,6 +16,7 @@ namespace MonitoR.Common.Sensors
         {
             SensorType = SensorType.SqlConnection;
         }
+
         public SqlServerType DatabaseType { get; set; }
 
         public string DatabaseName { get; set; }
@@ -56,7 +57,7 @@ namespace MonitoR.Common.Sensors
                 }
                 finally
                 {
-                    if (conn != null && conn.State == ConnectionState.Open)
+                    if (conn?.State == ConnectionState.Open)
                     {
                         conn.Close();
                     }
@@ -76,14 +77,12 @@ namespace MonitoR.Common.Sensors
                 return ReturnValue.True();
         }
 
-
         public virtual string GetConnectionString()
         {
             var connectionStr = string.Empty;
 
             switch (DatabaseType)
             {
-
                 case SqlServerType.MSSql:
                     {
                         if (DatabaseUseIntegratedLogin)
@@ -120,7 +119,6 @@ namespace MonitoR.Common.Sensors
             return connectionStr;
         }
 
-
         public IDbConnection GetConnection()
         {
             var connectionString = GetConnectionString();
@@ -153,7 +151,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (DatabaseType == SqlServerType.None )
@@ -165,7 +163,7 @@ namespace MonitoR.Common.Sensors
             if (String.IsNullOrEmpty(DatabaseServer))
                 return ReturnValue.False("Database Server should not be empty");
 
-            if (DatabaseUseIntegratedLogin == false)
+            if (!DatabaseUseIntegratedLogin)
             {
                 if (String.IsNullOrEmpty(DatabaseUserName))
                     return ReturnValue.False("Database username should not be empty");
@@ -175,16 +173,12 @@ namespace MonitoR.Common.Sensors
             }
 
             if(RunCustomSql && String.IsNullOrEmpty(CustomSql))
-            {
                 return ReturnValue.False("Sql should not be empty");
-            }
 
             if (DatabaseCommandTimeout < 0)
                 return ReturnValue.False("Database Command Timeout not be less than 0");
 
             return ReturnValue.True();
         }
-
     }
-
 }

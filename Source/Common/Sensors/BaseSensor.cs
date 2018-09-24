@@ -56,17 +56,17 @@ namespace MonitoR.Common.Sensors
             if (CheckInterval <= 0)
                 return ReturnValue.False("Check interval should be less than 1");
 
-            if (this.IntervalType == MonitoR.Common.Constants.CheckIntervalType.Seconds)
+            if (IntervalType == MonitoR.Common.Constants.CheckIntervalType.Seconds)
             {
                 if (CheckInterval > 59)
                     return ReturnValue.False("Check interval should be less than 59 secs");
             }
-            else if (this.IntervalType == MonitoR.Common.Constants.CheckIntervalType.Minutes)
+            else if (IntervalType == MonitoR.Common.Constants.CheckIntervalType.Minutes)
             {
                 if (CheckInterval > 59)
                     return ReturnValue.False("Check interval should be less than 59 minutes");
             }
-            else if (this.IntervalType == MonitoR.Common.Constants.CheckIntervalType.Hours)
+            else if (IntervalType == MonitoR.Common.Constants.CheckIntervalType.Hours)
             {
                 if (CheckInterval > 23)
                     return ReturnValue.False("Check interval should be less than 23 hours");
@@ -82,10 +82,13 @@ namespace MonitoR.Common.Sensors
             {
                 foreach (var sensor in allSensors)
                 {
-                    if (this.Id == sensor.Id)
+                    if (sensor == null)
                         continue;
 
-                    if (this.Name.Trim().ToUpper() == sensor.Name.Trim().ToUpper())
+                    if (Id == sensor.Id)
+                        continue;
+
+                    if (Name.CaseIgnoreEquals(sensor.Name))
                         return ReturnValue.False("Another sensor with simular name already exists");
                 }
             }
@@ -95,10 +98,9 @@ namespace MonitoR.Common.Sensors
 
         public virtual string GetDetails()
         {
-            return "Runs every " + CheckInterval + " " + this.IntervalType.ToString() + "; " +
-                " Notify after " + NotifyIfHappensAfterTimes + " "+ "failures " + "; " +
+            return "Runs every " + CheckInterval + " " + IntervalType.ToString() + "; " +
+                " Notify after " + NotifyIfHappensAfterTimes + " failures ; " +
                 (NotifyByEmail ? " Notify by Email " : "Nofication disable ") + "; ";
         }
     }
-
 }

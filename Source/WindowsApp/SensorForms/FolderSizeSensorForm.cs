@@ -1,4 +1,5 @@
-﻿using MonitoR.Common.Constants;
+﻿using MonitoR.Common.Common;
+using MonitoR.Common.Constants;
 using MonitoR.Common.Sensors;
 using MonitoR.Common.Utilities;
 using System;
@@ -15,21 +16,21 @@ namespace MonitoR.Configurator.SensorForms
 {
     public partial class FolderSizeSensorForm : Form
     {
-        private CrudType crudType;
-        public FolderSizeSensor Sensor { get; private set; }
-        public List<ISensor> ExistingSensors { get; private set; }
+        private readonly CrudType crudType;
+        public FolderSizeSensor Sensor { get; }
+        public List<ISensor> ExistingSensors { get; }
 
         public FolderSizeSensorForm(CrudType crudType, FolderSizeSensor sensor, List<ISensor> existingSensors)
         {
-            this.Sensor = sensor;
-            this.ExistingSensors = existingSensors;
+            Sensor = sensor;
+            ExistingSensors = existingSensors;
             this.crudType = crudType;
             InitializeComponent();
             InitCustomCode();
 
             if (crudType == CrudType.Add)
             {
-                cmbTimeType.SelectedIndex = 0;
+                cmbTimeType.SelectedIndex = (int)CheckIntervalType.Minutes;
                 Sensor.Id = Guid.NewGuid();
             }
 
@@ -41,8 +42,14 @@ namespace MonitoR.Configurator.SensorForms
             cklbDrives.Items.Clear();
             txtName.Focus();
             ntxtNotifyAfterFailureTimes.Value = 1;
-        }
 
+            cbSizeUnit.Items.Clear();
+            cbSizeUnit.Items.Add(SizeUnitType.KB);
+            var defaultIdx = cbSizeUnit.Items.Add(SizeUnitType.MB);
+            cbSizeUnit.Items.Add(SizeUnitType.GB);
+            cbSizeUnit.Items.Add(SizeUnitType.TB);
+            cbSizeUnit.SelectedIndex = defaultIdx;
+        }
 
         public void UpdateDataFromUI()
         {
@@ -57,6 +64,9 @@ namespace MonitoR.Configurator.SensorForms
             }
             Sensor.Enabled = cbEnabled.Checked;
             Sensor.NotifyByEmail = cbNotifyByEmail.Checked;
+
+            Sensor.SizeToCheck = (int)ntxtFolderSizeExceedValue.Value;
+            Sensor.SizeToCheckUnit = (SizeUnitType)cbSizeUnit.SelectedIndex;
         }
 
         public void UpdateUIFromData()
@@ -72,19 +82,21 @@ namespace MonitoR.Configurator.SensorForms
             }
             cbEnabled.Checked = Sensor.Enabled;
             cbNotifyByEmail.Checked = Sensor.NotifyByEmail;
+            ntxtFolderSizeExceedValue.Value = Sensor.SizeToCheck;
+            cbSizeUnit.SelectedIndex = (int)Sensor.SizeToCheckUnit;
         }
 
         private void BtOk_Click(object sender, EventArgs e)
         {
             UpdateDataFromUI();
-            var result = this.Sensor.IsValid(ExistingSensors);
-            if (result == null || result.Result == false)
+            var result = Sensor.IsValid(ExistingSensors);
+            if (ReturnValue.IsNullOrFalse(result))
             {
                 MessageBox.Show(result != null ? result.ErrorMessages.ToString(" ") : "Invalid Option");
                 return;
             }
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 

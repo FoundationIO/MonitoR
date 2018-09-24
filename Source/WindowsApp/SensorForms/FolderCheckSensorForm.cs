@@ -14,13 +14,13 @@ using System.Windows.Forms;
 
 namespace MonitoR.Configurator.SensorForms
 {
-    public partial class FileSizeSensorForm : Form
+    public partial class FolderCheckSensorForm : Form
     {
         private readonly CrudType crudType;
-        public FileSizeSensor Sensor { get; }
+        public FolderCheckSensor Sensor { get; }
         public List<ISensor> ExistingSensors { get; }
 
-        public FileSizeSensorForm(CrudType crudType, FileSizeSensor sensor, List<ISensor> existingSensors)
+        public FolderCheckSensorForm(CrudType crudType, FolderCheckSensor sensor, List<ISensor> existingSensors)
         {
             Sensor = sensor;
             ExistingSensors = existingSensors;
@@ -30,7 +30,7 @@ namespace MonitoR.Configurator.SensorForms
 
             if (crudType == CrudType.Add)
             {
-                cmbTimeType.SelectedIndex = (int)CheckIntervalType.Minutes;
+                cmbTimeType.SelectedIndex = 0;
                 Sensor.Id = Guid.NewGuid();
             }
 
@@ -42,13 +42,6 @@ namespace MonitoR.Configurator.SensorForms
             cklbDrives.Items.Clear();
             txtName.Focus();
             ntxtNotifyAfterFailureTimes.Value = 1;
-
-            cbSizeUnit.Items.Clear();
-            cbSizeUnit.Items.Add(SizeUnitType.KB);
-            var defaultIdx = cbSizeUnit.Items.Add(SizeUnitType.MB);
-            cbSizeUnit.Items.Add(SizeUnitType.GB);
-            cbSizeUnit.Items.Add(SizeUnitType.TB);
-            cbSizeUnit.SelectedIndex = defaultIdx;
         }
 
         public void UpdateDataFromUI()
@@ -57,15 +50,13 @@ namespace MonitoR.Configurator.SensorForms
             Sensor.NotifyIfHappensAfterTimes = (int)ntxtNotifyAfterFailureTimes.Value;
             Sensor.CheckInterval = (int)ntxtCheckEveryTime.Value;
             Sensor.IntervalType = (CheckIntervalType)cmbTimeType.SelectedIndex;
-            Sensor.Files.Clear();
+            Sensor.Folders.Clear();
             foreach (var item in cklbDrives.Items)
             {
-                Sensor.Files.Add(item.ToString());
+                Sensor.Folders.Add(item.ToString());
             }
             Sensor.Enabled = cbEnabled.Checked;
             Sensor.NotifyByEmail = cbNotifyByEmail.Checked;
-            Sensor.SizeToCheck = (int)ntxtFileSizeExceedValue.Value;
-            Sensor.SizeToCheckUnit = (SizeUnitType)cbSizeUnit.SelectedIndex;
         }
 
         public void UpdateUIFromData()
@@ -75,14 +66,12 @@ namespace MonitoR.Configurator.SensorForms
             ntxtCheckEveryTime.Value = Sensor.CheckInterval;
             cmbTimeType.SelectedIndex = (int)Sensor.IntervalType;
             cklbDrives.Items.Clear();
-            foreach (var item in Sensor.Files)
+            foreach (var item in Sensor.Folders)
             {
                 cklbDrives.Items.Add(item);
             }
             cbEnabled.Checked = Sensor.Enabled;
             cbNotifyByEmail.Checked = Sensor.NotifyByEmail;
-            ntxtFileSizeExceedValue.Value = Sensor.SizeToCheck;
-            cbSizeUnit.SelectedIndex = (int)Sensor.SizeToCheckUnit;
         }
 
         private void BtOk_Click(object sender, EventArgs e)
@@ -101,10 +90,10 @@ namespace MonitoR.Configurator.SensorForms
 
         private void BtAddItem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.FileName = "";
-            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+            folderBrowserDialog1.SelectedPath = "";
+            if (folderBrowserDialog1.ShowDialog() != DialogResult.OK)
                 return;
-            cklbDrives.Items.Add(openFileDialog1.FileName);
+            cklbDrives.Items.Add(folderBrowserDialog1.SelectedPath);
         }
 
         private void BtDelete_Click(object sender, EventArgs e)

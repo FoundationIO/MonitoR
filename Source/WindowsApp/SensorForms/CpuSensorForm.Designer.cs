@@ -138,7 +138,8 @@
             this.cmbTimeType.Items.AddRange(new object[] {
             "secs",
             "mins",
-            "hours"});
+            "hours",
+            "days"});
             this.cmbTimeType.Location = new System.Drawing.Point(163, 56);
             this.cmbTimeType.Name = "cmbTimeType";
             this.cmbTimeType.Size = new System.Drawing.Size(65, 21);

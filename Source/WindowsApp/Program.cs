@@ -7,30 +7,32 @@ using System.Windows.Forms;
 
 namespace MonitoR.Configurator
 {
-    static class Program
+    internal static class Program
     {
-        static readonly SimpleInjector.Container container = new SimpleInjector.Container();
-//#pragma warning disable S3963 // "static" fields should be initialized inline
+        private static readonly SimpleInjector.Container container = new SimpleInjector.Container();
+
         static Program()
         {
             container.RegisterSingleton<IAppConfig, AppConfig>();
             container.RegisterSingleton<ILog, Log>();
             container.Verify();
         }
-//#pragma warning restore S3963 // "static" fields should be initialized inline
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             var config = container.GetInstance<IAppConfig>();
             var log = container.GetInstance<ILog>();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(config, log));
+            using (var mainForm = new MainForm(config, log))
+            {
+                Application.Run(mainForm);
+            }
         }
     }
 }

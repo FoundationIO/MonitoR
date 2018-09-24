@@ -2,39 +2,39 @@
 using MonitoR.Common.Common;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
+using MonitoR.Common.Utilities;
+using System;
 
 namespace MonitoR.Common.Sensors
 {
-    public class ProcessSensor : BaseSensor
+    public class FolderCheckSensor : BaseSensor
     {
-        public ProcessSensor()
+        public FolderCheckSensor()
         {
-            SensorType = SensorType.Process;
+            SensorType = SensorType.FolderCheck;
         }
 
-        public List<string> Executables { get; set; } = new List<string>();
+        public List<string> Folders { get; set; } = new List<string>();
 
         public override ReturnValue Execute(IAppConfig appConfig, ILog log)
         {
             var errorList = new StringBuilder();
 
-            var processlist = Process.GetProcesses();
-            foreach (var exe in Executables)
+            foreach(var folder in Folders)
             {
-                bool found = false;
-                foreach (var theprocess in processlist)
+                try
                 {
-                    if (theprocess.ProcessName.EndsWith(exe, System.StringComparison.CurrentCultureIgnoreCase))
+                    var di = new DirectoryInfo(folder);
+                    if (!di.Exists)
                     {
-                        found = true;
-                        break;
+                        errorList.AppendLine($"Folder {folder} does not exists");
                     }
                 }
-
-                if (!found)
+                catch (Exception ex)
                 {
-                    errorList.AppendLine($"Process {exe} is not running");
+                    errorList.AppendLine($"Folder {folder} is not accesible - {ex.RecursivelyGetExceptionMessage()}");
                 }
             }
 
@@ -51,8 +51,8 @@ namespace MonitoR.Common.Sensors
             if (result?.Result != true)
                 return result;
 
-            if (Executables == null || Executables.Count == 0)
-                return ReturnValue.False("You need to have atleast one executable to check");
+            if (Folders == null || Folders.Count == 0)
+                return ReturnValue.False("You need to select atleast one drive to check");
 
             return ReturnValue.True();
         }

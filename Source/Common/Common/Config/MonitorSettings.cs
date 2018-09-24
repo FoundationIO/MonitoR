@@ -10,6 +10,9 @@ namespace MonitoR.Common.Common.Config
         public List<DriveSpaceSensor> DrivespaceSensors { get; set; } = new List<DriveSpaceSensor>();
         public List<FolderSizeSensor> FolderSizeSensors { get; set; } = new List<FolderSizeSensor>();
         public List<FileSizeSensor> FileSizeSensors { get; set; } = new List<FileSizeSensor>();
+        public List<FolderCheckSensor> FolderCheckSensors { get; set; } = new List<FolderCheckSensor>();
+        public List<FileCheckSensor> FileCheckSensors { get; set; } = new List<FileCheckSensor>();
+
         public List<CpuSensor> CpuSensors { get; set; } = new List<CpuSensor>();
         public List<RamSensor> RamSensors { get; set; } = new List<RamSensor>();
         public List<ServiceSensor> ServiceSensors { get; set; } = new List<ServiceSensor>();
@@ -33,41 +36,42 @@ namespace MonitoR.Common.Common.Config
 
         public void Add(MonitorSettings monitorSettings)
         {
-            ClearAndAddNewItems(this.HttpSensors,monitorSettings.HttpSensors);
-            ClearAndAddNewItems(this.FtpSensors, monitorSettings.FtpSensors);
-            ClearAndAddNewItems(this.DrivespaceSensors, monitorSettings.DrivespaceSensors);
-            ClearAndAddNewItems(this.FolderSizeSensors, monitorSettings.FolderSizeSensors);
-            ClearAndAddNewItems(this.FileSizeSensors, monitorSettings.FileSizeSensors);
-            ClearAndAddNewItems(this.CpuSensors, monitorSettings.CpuSensors);
-            ClearAndAddNewItems(this.RamSensors, monitorSettings.RamSensors);
-            ClearAndAddNewItems(this.ServiceSensors, monitorSettings.ServiceSensors);
-            ClearAndAddNewItems(this.ProcessSensors, monitorSettings.ProcessSensors);
-            ClearAndAddNewItems(this.SqlConnectionSensors, monitorSettings.SqlConnectionSensors);
-            ClearAndAddNewItems(this.IISApplicationPoolSensors, monitorSettings.IISApplicationPoolSensors);
-            ClearAndAddNewItems(this.IISWebsiteSensors, monitorSettings.IISWebsiteSensors);
-            ClearAndAddNewItems(this.PingSensors, monitorSettings.PingSensors);
+            ClearAndAddNewItems(HttpSensors,monitorSettings.HttpSensors);
+            ClearAndAddNewItems(FtpSensors, monitorSettings.FtpSensors);
+            ClearAndAddNewItems(DrivespaceSensors, monitorSettings.DrivespaceSensors);
+            ClearAndAddNewItems(FolderSizeSensors, monitorSettings.FolderSizeSensors);
+            ClearAndAddNewItems(FileSizeSensors, monitorSettings.FileSizeSensors);
+            ClearAndAddNewItems(FolderCheckSensors, monitorSettings.FolderCheckSensors);
+            ClearAndAddNewItems(FileCheckSensors, monitorSettings.FileCheckSensors);
+            ClearAndAddNewItems(CpuSensors, monitorSettings.CpuSensors);
+            ClearAndAddNewItems(RamSensors, monitorSettings.RamSensors);
+            ClearAndAddNewItems(ServiceSensors, monitorSettings.ServiceSensors);
+            ClearAndAddNewItems(ProcessSensors, monitorSettings.ProcessSensors);
+            ClearAndAddNewItems(SqlConnectionSensors, monitorSettings.SqlConnectionSensors);
+            ClearAndAddNewItems(IISApplicationPoolSensors, monitorSettings.IISApplicationPoolSensors);
+            ClearAndAddNewItems(IISWebsiteSensors, monitorSettings.IISWebsiteSensors);
+            ClearAndAddNewItems(PingSensors, monitorSettings.PingSensors);
         }
 
         public List<ISensor> GetAllSensors()
         {
             var result = new List<ISensor>();
-            result.AddRange(this.HttpSensors);
-            result.AddRange(this.FtpSensors);
-            result.AddRange(this.DrivespaceSensors);
-            result.AddRange(this.FolderSizeSensors);
-            result.AddRange(this.FileSizeSensors);
-            result.AddRange(this.CpuSensors);
-            result.AddRange(this.RamSensors);
-            result.AddRange(this.ServiceSensors);
-            result.AddRange(this.ProcessSensors);
-            result.AddRange(this.SqlConnectionSensors);
-            result.AddRange(this.IISApplicationPoolSensors);
-            result.AddRange(this.IISWebsiteSensors);
-            result.AddRange(this.PingSensors);
+            result.AddRange(HttpSensors);
+            result.AddRange(FtpSensors);
+            result.AddRange(DrivespaceSensors);
+            result.AddRange(FolderSizeSensors);
+            result.AddRange(FileSizeSensors);
+            result.AddRange(FolderCheckSensors);
+            result.AddRange(FileCheckSensors);
+            result.AddRange(CpuSensors);
+            result.AddRange(RamSensors);
+            result.AddRange(ServiceSensors);
+            result.AddRange(ProcessSensors);
+            result.AddRange(SqlConnectionSensors);
+            result.AddRange(IISApplicationPoolSensors);
+            result.AddRange(IISWebsiteSensors);
+            result.AddRange(PingSensors);
             return result;
         }
-
 }
-
-
 }

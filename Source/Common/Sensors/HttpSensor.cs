@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.Collections.Generic;
 using System.Text;
+using MonitoR.Common.Utilities;
 
 namespace MonitoR.Common.Sensors
 {
@@ -37,13 +38,13 @@ namespace MonitoR.Common.Sensors
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
                         if (response.StatusCode != HttpStatusCode.OK)
-                            errorList.AppendLine($"Sensor - {this.Name} ({this.Id}) with Url - {url} returned status code =  {response.StatusCode}");
+                            errorList.AppendLine($"Sensor - {Name} ({Id}) with Url - {url} returned status code =  {response.StatusCode}");
                     }
                 }
                 catch (Exception ex)
                 {
-                    log.Error(ex, $"Sensor - {this.Name} ({this.Id}) - Error connecting to Url - {url} - Error - {ex.Message}");
-                    errorList.AppendLine($"Sensor - {this.Name} ({this.Id}) - Error connecting to Url - {url} - Error - {ex.Message}");
+                    log.Error(ex, $"Sensor - {Name} ({Id}) - Error connecting to Url - {url} - Error - {ex.Message}");
+                    errorList.AppendLine($"Sensor - {Name} ({Id}) - Error connecting to Url - {url} - Error - {ex.Message}");
                 }
             }
 
@@ -57,7 +58,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || result.Result == false)
+            if (result?.Result != true)
                 return result;
 
             if (DefaultTimeoutInSec < 0)
@@ -66,15 +67,13 @@ namespace MonitoR.Common.Sensors
             if(RequestMethod == null)
                 return ReturnValue.False("Http Method should be specified");
 
-            if (!(RequestMethod.ToUpper() == "HEAD" || RequestMethod.ToUpper() == "GET" || RequestMethod.ToUpper() == "POST"))
+            if (!(RequestMethod.CaseIgnoreEquals("HEAD") || RequestMethod.CaseIgnoreEquals("GET") || RequestMethod.CaseIgnoreEquals("POST")))
                 return ReturnValue.False("Only HEAD, GET and POST operations are allowed");
-        
+
             if (Urls == null || Urls.Count == 0)
                 return ReturnValue.False("You need to select atleast one url to check");
-            
+
             return ReturnValue.True();
         }
     }
-
-
 }

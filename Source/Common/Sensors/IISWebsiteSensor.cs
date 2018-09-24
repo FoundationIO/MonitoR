@@ -17,6 +17,7 @@ namespace MonitoR.Common.Sensors
         {
             SensorType = SensorType.IISWebsite;
         }
+
         public List<string> Websites { get; set; } = new List<string>();
         public bool RestartIfStopped { get; set; }
         public int DelayForRecheckingStatus { get; set; } = 5000;
@@ -83,11 +84,12 @@ namespace MonitoR.Common.Sensors
             else
                 return ReturnValue.False(errorList.ToString());
         }
+
         public override ReturnValue IsValid(List<ISensor> allSensors)
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || !result.Result)
+            if (result?.Result != true)
                 return result;
 
             if (DelayForRecheckingStatus < 0)
@@ -95,11 +97,8 @@ namespace MonitoR.Common.Sensors
 
             if (Websites == null || Websites.Count == 0)
                 return ReturnValue.False("You need to select atleast one drive to check");
-                
+
             return ReturnValue.True();
         }
-
     }
-
-
 }

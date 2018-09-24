@@ -188,7 +188,6 @@ namespace MonitoR.Common.Utilities
 
         public static T Enum<T>(int enumValue, object defaultValue)
         {
-
             try
             {
                 return (T)System.Enum.ToObject(typeof(T), enumValue);

@@ -1,4 +1,5 @@
-﻿using MonitoR.Common.Constants;
+﻿using MonitoR.Common.Common;
+using MonitoR.Common.Constants;
 using MonitoR.Common.Sensors;
 using MonitoR.Common.Utilities;
 using System;
@@ -15,21 +16,21 @@ namespace MonitoR.Configurator.SensorForms
 {
     public partial class SqlConnectionSensorForm : Form
     {
-        private CrudType crudType;
-        public SqlConnectionSensor Sensor { get; private set; }
-        public List<ISensor> ExistingSensors { get; private set; }
+        private readonly CrudType crudType;
+        public SqlConnectionSensor Sensor { get; }
+        public List<ISensor> ExistingSensors { get; }
 
         public SqlConnectionSensorForm(CrudType crudType, SqlConnectionSensor sensor, List<ISensor> existingSensors)
         {
-            this.Sensor = sensor;
-            this.ExistingSensors = existingSensors;
+            Sensor = sensor;
+            ExistingSensors = existingSensors;
             this.crudType = crudType;
             InitializeComponent();
             InitCustomCode();
 
             if (crudType == CrudType.Add)
             {
-                cmbTimeType.SelectedIndex = 0;
+                cmbTimeType.SelectedIndex = (int)CheckIntervalType.Minutes;
                 Sensor.Id = Guid.NewGuid();
             }
 
@@ -65,14 +66,14 @@ namespace MonitoR.Configurator.SensorForms
         private void BtOk_Click(object sender, EventArgs e)
         {
             UpdateDataFromUI();
-            var result = this.Sensor.IsValid(ExistingSensors);
-            if (result == null || result.Result == false)
+            var result = Sensor.IsValid(ExistingSensors);
+            if (ReturnValue.IsNullOrFalse(result))
             {
                 MessageBox.Show(result != null ? result.ErrorMessages.ToString(" ") : "Invalid Option");
                 return;
             }
 
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -81,6 +82,5 @@ namespace MonitoR.Configurator.SensorForms
             txtName.Focus();
             base.OnShown(e);
         }
-
     }
 }

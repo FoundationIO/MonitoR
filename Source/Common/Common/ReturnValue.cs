@@ -55,8 +55,12 @@ namespace MonitoR.Common.Common
             return new ReturnValue { Result = false, ErrorMessages = errorList, WarningMessages = warningList };
         }
 
+        public static bool IsNullOrFalse(ReturnValue value)
+        {
+            if (value == null)
+                return true;
 
+            return !value.Result;
+        }
     }
-
-
 }

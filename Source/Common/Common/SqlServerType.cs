@@ -7,6 +7,4 @@
         MySql,
         Postgres
     }
-
-
 }

@@ -46,15 +46,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ntxtCpuUsageExceedValue = new System.Windows.Forms.NumericUpDown();
+            this.ntxtFolderSizeExceedValue = new System.Windows.Forms.NumericUpDown();
             this.ntxtNotifyAfterFailureTimes = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbSizeUnit = new System.Windows.Forms.ComboBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtCheckEveryTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ntxtCpuUsageExceedValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ntxtFolderSizeExceedValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtNotifyAfterFailureTimes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +71,7 @@
             this.btDelete.ImageIndex = 1;
             this.btDelete.ImageList = this.imageList1;
             this.btDelete.Location = new System.Drawing.Point(531, 353);
-            this.btDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(57, 28);
             this.btDelete.TabIndex = 8;
@@ -83,7 +83,7 @@
             this.btAddItem.ImageIndex = 0;
             this.btAddItem.ImageList = this.imageList1;
             this.btAddItem.Location = new System.Drawing.Point(465, 353);
-            this.btAddItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAddItem.Margin = new System.Windows.Forms.Padding(4);
             this.btAddItem.Name = "btAddItem";
             this.btAddItem.Size = new System.Drawing.Size(57, 28);
             this.btAddItem.TabIndex = 7;
@@ -105,7 +105,7 @@
             this.cklbDrives.FormattingEnabled = true;
             this.cklbDrives.ItemHeight = 16;
             this.cklbDrives.Location = new System.Drawing.Point(27, 230);
-            this.cklbDrives.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cklbDrives.Margin = new System.Windows.Forms.Padding(4);
             this.cklbDrives.Name = "cklbDrives";
             this.cklbDrives.Size = new System.Drawing.Size(560, 100);
             this.cklbDrives.TabIndex = 6;
@@ -113,7 +113,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(133, 23);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(453, 22);
             this.txtName.TabIndex = 0;
@@ -132,9 +132,9 @@
             // 
             this.cbEnabled.AutoSize = true;
             this.cbEnabled.Location = new System.Drawing.Point(27, 416);
-            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbEnabled.Margin = new System.Windows.Forms.Padding(4);
             this.cbEnabled.Name = "cbEnabled";
-            this.cbEnabled.Size = new System.Drawing.Size(82, 21);
+            this.cbEnabled.Size = new System.Drawing.Size(79, 21);
             this.cbEnabled.TabIndex = 10;
             this.cbEnabled.Text = "Enabled";
             this.cbEnabled.UseVisualStyleBackColor = true;
@@ -143,9 +143,9 @@
             // 
             this.cbNotifyByEmail.AutoSize = true;
             this.cbNotifyByEmail.Location = new System.Drawing.Point(27, 367);
-            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbNotifyByEmail.Margin = new System.Windows.Forms.Padding(4);
             this.cbNotifyByEmail.Name = "cbNotifyByEmail";
-            this.cbNotifyByEmail.Size = new System.Drawing.Size(123, 21);
+            this.cbNotifyByEmail.Size = new System.Drawing.Size(120, 21);
             this.cbNotifyByEmail.TabIndex = 9;
             this.cbNotifyByEmail.Text = "Notify by Email";
             this.cbNotifyByEmail.UseVisualStyleBackColor = true;
@@ -153,7 +153,7 @@
             // ntxtCheckEveryTime
             // 
             this.ntxtCheckEveryTime.Location = new System.Drawing.Point(133, 69);
-            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtCheckEveryTime.Margin = new System.Windows.Forms.Padding(4);
             this.ntxtCheckEveryTime.Name = "ntxtCheckEveryTime";
             this.ntxtCheckEveryTime.Size = new System.Drawing.Size(76, 22);
             this.ntxtCheckEveryTime.TabIndex = 1;
@@ -165,9 +165,10 @@
             this.cmbTimeType.Items.AddRange(new object[] {
             "secs",
             "mins",
-            "hours"});
+            "hours",
+            "days"});
             this.cmbTimeType.Location = new System.Drawing.Point(217, 69);
-            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTimeType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTimeType.Name = "cmbTimeType";
             this.cmbTimeType.Size = new System.Drawing.Size(85, 24);
             this.cmbTimeType.TabIndex = 2;
@@ -175,7 +176,7 @@
             // btOk
             // 
             this.btOk.Location = new System.Drawing.Point(405, 537);
-            this.btOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btOk.Margin = new System.Windows.Forms.Padding(4);
             this.btOk.Name = "btOk";
             this.btOk.Size = new System.Drawing.Size(100, 28);
             this.btOk.TabIndex = 11;
@@ -187,7 +188,7 @@
             // 
             this.btCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancel.Location = new System.Drawing.Point(529, 537);
-            this.btCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(100, 28);
             this.btCancel.TabIndex = 12;
@@ -226,18 +227,18 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "Check every";
             // 
-            // ntxtCpuUsageExceedValue
+            // ntxtFolderSizeExceedValue
             // 
-            this.ntxtCpuUsageExceedValue.Location = new System.Drawing.Point(277, 162);
-            this.ntxtCpuUsageExceedValue.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ntxtCpuUsageExceedValue.Name = "ntxtCpuUsageExceedValue";
-            this.ntxtCpuUsageExceedValue.Size = new System.Drawing.Size(76, 22);
-            this.ntxtCpuUsageExceedValue.TabIndex = 4;
+            this.ntxtFolderSizeExceedValue.Location = new System.Drawing.Point(277, 162);
+            this.ntxtFolderSizeExceedValue.Margin = new System.Windows.Forms.Padding(4);
+            this.ntxtFolderSizeExceedValue.Name = "ntxtFolderSizeExceedValue";
+            this.ntxtFolderSizeExceedValue.Size = new System.Drawing.Size(76, 22);
+            this.ntxtFolderSizeExceedValue.TabIndex = 4;
             // 
             // ntxtNotifyAfterFailureTimes
             // 
             this.ntxtNotifyAfterFailureTimes.Location = new System.Drawing.Point(133, 113);
-            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ntxtNotifyAfterFailureTimes.Margin = new System.Windows.Forms.Padding(4);
             this.ntxtNotifyAfterFailureTimes.Name = "ntxtNotifyAfterFailureTimes";
             this.ntxtNotifyAfterFailureTimes.Size = new System.Drawing.Size(76, 22);
             this.ntxtNotifyAfterFailureTimes.TabIndex = 3;
@@ -264,7 +265,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbSizeUnit);
             this.groupBox1.Controls.Add(this.btDelete);
             this.groupBox1.Controls.Add(this.btAddItem);
             this.groupBox1.Controls.Add(this.label8);
@@ -277,32 +278,32 @@
             this.groupBox1.Controls.Add(this.cmbTimeType);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.ntxtCpuUsageExceedValue);
+            this.groupBox1.Controls.Add(this.ntxtFolderSizeExceedValue);
             this.groupBox1.Controls.Add(this.ntxtNotifyAfterFailureTimes);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(16, 54);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(613, 458);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             // 
-            // comboBox1
+            // cbSizeUnit
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbSizeUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSizeUnit.FormattingEnabled = true;
+            this.cbSizeUnit.Items.AddRange(new object[] {
             "KB",
             "MB",
             "GB",
             "TB"});
-            this.comboBox1.Location = new System.Drawing.Point(361, 161);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(85, 24);
-            this.comboBox1.TabIndex = 5;
+            this.cbSizeUnit.Location = new System.Drawing.Point(361, 161);
+            this.cbSizeUnit.Margin = new System.Windows.Forms.Padding(4);
+            this.cbSizeUnit.Name = "cbSizeUnit";
+            this.cbSizeUnit.Size = new System.Drawing.Size(85, 24);
+            this.cbSizeUnit.TabIndex = 5;
             // 
             // FolderSizeSensorForm
             // 
@@ -314,7 +315,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FolderSizeSensorForm";
@@ -322,7 +323,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Folder Size Sensor";
             ((System.ComponentModel.ISupportInitialize)(this.ntxtCheckEveryTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ntxtCpuUsageExceedValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ntxtFolderSizeExceedValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ntxtNotifyAfterFailureTimes)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -348,12 +349,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown ntxtCpuUsageExceedValue;
+        private System.Windows.Forms.NumericUpDown ntxtFolderSizeExceedValue;
         private System.Windows.Forms.NumericUpDown ntxtNotifyAfterFailureTimes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbSizeUnit;
     }
 }

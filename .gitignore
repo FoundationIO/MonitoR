@@ -267,3 +267,4 @@ __pycache__/
 /Build/CI/tools
 /Configuration/old-ServiceMonitorApplicationConfiguration.json
 /Configuration/old-MonitorSensorSettings.json
+/Source/CodeGraphData

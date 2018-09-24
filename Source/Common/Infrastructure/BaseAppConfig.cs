@@ -30,46 +30,31 @@ namespace MonitoR.Common.Infrastructure
 
         public void Update(BaseAppConfig itemFromFile)
         {
-            this.LogTrace = itemFromFile.LogTrace;
-            this.LogDebug = itemFromFile.LogDebug;
-            this.LogInfo = itemFromFile.LogInfo;
-            this.LogWarn = itemFromFile.LogWarn;
-            this.LogError = itemFromFile.LogError;
+            LogTrace = itemFromFile.LogTrace;
+            LogDebug = itemFromFile.LogDebug;
+            LogInfo = itemFromFile.LogInfo;
+            LogWarn = itemFromFile.LogWarn;
+            LogError = itemFromFile.LogError;
 
-            this.RemoteStatus = itemFromFile.RemoteStatus;
-            if (this.RemoteStatus == null)
+            RemoteStatus = itemFromFile.RemoteStatus ?? new RemoteStatusSettings();
+
+            EmailServerSettings = itemFromFile.EmailServerSettings ?? new EmailServerSettings();
+            EmailTemplateSettings = itemFromFile.EmailTemplateSettings ?? new EmailTemplateSettings();
+
+            if (EmailTemplateSettings.DefaultSubject.IsTrimmedStringNullOrEmpty())
             {
-                this.RemoteStatus = new RemoteStatusSettings();
+                EmailTemplateSettings.DefaultSubject = DefaultEmailTemplateText.Subject;
             }
 
-            this.EmailServerSettings = itemFromFile.EmailServerSettings;
-            if(this.EmailServerSettings == null)
+            if (EmailTemplateSettings.DefaultTextBody.IsTrimmedStringNullOrEmpty())
             {
-                this.EmailServerSettings = new EmailServerSettings();
+                EmailTemplateSettings.DefaultTextBody = DefaultEmailTemplateText.TextBody;
             }
 
-            this.EmailTemplateSettings = itemFromFile.EmailTemplateSettings;
-            if (this.EmailTemplateSettings == null)
+            if (EmailTemplateSettings.DefaultHtmlBody.IsTrimmedStringNullOrEmpty())
             {
-                this.EmailTemplateSettings = new EmailTemplateSettings();
+                EmailTemplateSettings.DefaultHtmlBody = DefaultEmailTemplateText.HtmlBody;
             }
-
-            if(this.EmailTemplateSettings.DefaultSubject.IsTrimmedStringNullOrEmpty())
-            {
-                this.EmailTemplateSettings.DefaultSubject = DefaultEmailTemplateText.Subject;
-            }
-
-            if (this.EmailTemplateSettings.DefaultTextBody.IsTrimmedStringNullOrEmpty())
-            {                
-                this.EmailTemplateSettings.DefaultTextBody = DefaultEmailTemplateText.TextBody;
-            }
-
-            if (this.EmailTemplateSettings.DefaultHtmlBody.IsTrimmedStringNullOrEmpty())
-            {
-                this.EmailTemplateSettings.DefaultHtmlBody = DefaultEmailTemplateText.HtmlBody;
-            }
-
         }
-
     }
 }

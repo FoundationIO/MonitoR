@@ -13,25 +13,25 @@ namespace MonitoR.Common.Utilities
         {
             if (bytes < 0x400L)
             {
-                return (bytes.ToString("N0") + " Bytes");
+                return bytes.ToString("N0") + " Bytes";
             }
             if (bytes < 0x100000L)
             {
                 var num = ((double)bytes) / 1024.0;
-                return (num.ToString("N2") + " KB");
+                return num.ToString("N2") + " KB";
             }
             if (bytes < 0x40000000L)
             {
                 var num2 = ((double)bytes) / 1048576.0;
-                return (num2.ToString("N2") + " MB");
+                return num2.ToString("N2") + " MB";
             }
             if (bytes < 0x10000000000L)
             {
                 var num3 = ((double)bytes) / 1073741824.0;
-                return (num3.ToString("N2") + " GB");
+                return num3.ToString("N2") + " GB";
             }
             var num4 = ((double)bytes) / 1099511627776.0;
-            return (num4.ToString("N2") + " TB");
+            return num4.ToString("N2") + " TB";
         }
 
         public static long FileSize(string file)
@@ -48,8 +48,8 @@ namespace MonitoR.Common.Utilities
 
         public static long DirSize(DirectoryInfo dir)
         {
-            return dir.GetFiles().Sum(fi => fi.Length) +
-                   dir.GetDirectories().Sum(di => DirSize(di));
+            return dir.GetFiles().Sum(fi => fi.Length)
+                   + dir.GetDirectories().Sum(di => DirSize(di));
         }
 
         public static string Combine(string path1, params string[] paramstrs)
@@ -70,12 +70,10 @@ namespace MonitoR.Common.Utilities
             var sb = new StringBuilder();
             foreach (var item in paramstrs)
             {
-                sb.Append(StringUtils.RemoveLastCharAndAddFirstChar(item, slash));
+                sb.Append(item.RemoveLastCharAndAddFirstChar(slash));
             }
 
             return sb.ToString();
         }
-
     }
-
 }

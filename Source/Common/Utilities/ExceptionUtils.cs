@@ -21,7 +21,7 @@ namespace MonitoR.Common.Utilities
                 return "";
             var errorList = new List<string>();
             GetInnerExceptionMsg(ex, ref errorList, withStackTrace);
-            return StringUtils.ToString(errorList, "\n");
+            return errorList.ToString("\n");
         }
     }
 }

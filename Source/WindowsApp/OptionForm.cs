@@ -14,8 +14,8 @@ namespace MonitoR.Configurator
 {
     public partial class OptionForm : Form
     {
-        private IAppConfig config;
-        private ILog log;
+        private readonly IAppConfig config;
+        private readonly ILog log;
 
         public OptionForm(IAppConfig config, ILog log)
         {
@@ -76,7 +76,7 @@ namespace MonitoR.Configurator
                 return false;
             }
 
-            if (ValidationUtils.IsEmailValid(txtFromEmail.Text.Trim()) == false)
+            if (!ValidationUtils.IsEmailValid(txtFromEmail.Text.Trim()))
             {
                 MessageBox.Show("From Email is not valid");
                 return false;
@@ -88,12 +88,11 @@ namespace MonitoR.Configurator
                 return false;
             }
 
-            if (ValidationUtils.IsEmailValid(txtToEmail.Text.Trim()) == false)
+            if (!ValidationUtils.IsEmailValid(txtToEmail.Text.Trim()))
             {
                 MessageBox.Show("To Email is not valid");
                 return false;
             }
-
 
             if (txtEmailServerName.Text.IsTrimmedStringNullOrEmpty())
             {
@@ -136,7 +135,7 @@ namespace MonitoR.Configurator
 
         private void BtOk_Click(object sender, EventArgs e)
         {
-            if (IsValid() == false)
+            if (!IsValid())
                 return;
 
             DialogResult = DialogResult.OK;
@@ -164,7 +163,7 @@ namespace MonitoR.Configurator
             catch (Exception ex)
             {
                 log.Error(ex, $"Unable to send email to - {txtToEmail.Text}");
-                MessageBox.Show($"Unable to send email to - {txtToEmail.Text} \n\n Exception : \n" + ExceptionUtils.RecursivelyGetExceptionMessage(ex));
+                MessageBox.Show($"Unable to send email to - {txtToEmail.Text} \n\n Exception : \n" + ex.RecursivelyGetExceptionMessage());
             }
         }
     }

@@ -60,7 +60,7 @@ namespace MonitoR.Common.Sensors
         {
             var result = base.IsValid(allSensors);
 
-            if (result == null || !result.Result)
+            if (result?.Result != true)
                 return result;
 
             if (PercentToCheck <= 0)
@@ -74,10 +74,5 @@ namespace MonitoR.Common.Sensors
 
             return ReturnValue.True();
         }
-
-        
-
     }
-
-
 }
