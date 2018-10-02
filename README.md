@@ -26,14 +26,18 @@ Precompiled windows setup can be found in the release section : https://github.c
 
 ### Screenshots
 
-Main Screen
+* Main Screen
+
 ![Configuration Main Screen](https://github.com/FoundationIO/MonitoR/blob/master/Support/Screenshots/main-screen.PNG)
 
-Main Screen with sensor list
+* Main Screen with sensor list
+
 ![Configuration Main Screen with Sensor List](https://github.com/FoundationIO/MonitoR/blob/master/Support/Screenshots/main-screen-2.PNG)
 
-Options
+* Options
+
 ![Options](https://github.com/FoundationIO/MonitoR/blob/master/Support/Screenshots/options-screen.PNG)
 
-Http Sensor
+* Http Sensor
+
 ![Configuration Main Screen](https://github.com/FoundationIO/MonitoR/blob/master/Support/Screenshots/http-sensor.PNG)
