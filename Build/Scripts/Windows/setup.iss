@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "MonitoR"
-#define MyAppVersion "1.0"
+#define MyAppVersion "0.1"
 #define MyAppPublisher "FoundationIO"
 #define MyAppURL "http://www.foundation.io/"
 #define MyAppExeName "MonitoR.Configurator.exe"
@@ -87,9 +87,9 @@ begin
       ServiceName := Names[I];
       if RegQueryStringValue(HKEY_LOCAL_MACHINE, 'System\CurrentControlSet\Services\'+ServiceName,'ImagePath', ServicePath) then
       begin
-	  if Pos(ServiceFileName,ServicePath) <> 0 then
-	  begin
-	    // LogOne('Service Name = ' + ServiceName);
+      if Pos(ServiceFileName,ServicePath) <> 0 then
+      begin
+        // LogOne('Service Name = ' + ServiceName);
          try
            SimpleStopService(ServiceName,true,true);
          except
@@ -104,7 +104,7 @@ begin
              DeleteProblem := false;
            end;
          end;
-	  end;
+      end;
       end;
     end;
   end;
@@ -126,15 +126,15 @@ begin
     installStatus := SimpleCreateService(serviceName,serviceName,ServiceFileName,SERVICE_AUTO_START,ServiceUserName, ServiceUserPassword,true,true);
 
     try      
-	    if (installStatus = false) then
+        if (installStatus = false) then
             installStatus := SimpleCreateService(serviceName,serviceName,ServiceFileName,SERVICE_AUTO_START,'', '',true,true);
     except
         installStatus := false;
     end;
 
-	if (installStatus) then
+    if (installStatus) then
     begin
-	    SimpleStartService(serviceName,false,true);
+        SimpleStartService(serviceName,false,true);
     end;
 
     if ( installStatus = false) then

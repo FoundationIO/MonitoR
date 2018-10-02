@@ -504,11 +504,13 @@ namespace MonitoR.Configurator
             {
                 toolStripServiceStatusLabel.Text = "Status : Monitor Service is running";
                 toolStripServiceStatusLabel.ForeColor = Color.Green;
+                toolStripServiceStatusLabel.BackColor = statusStrip1.BackColor;
             }
             else
             {
                 toolStripServiceStatusLabel.Text = "Status : Monitor Service is not running";
                 toolStripServiceStatusLabel.BackColor = Color.PaleVioletRed;
+                toolStripServiceStatusLabel.ForeColor = Color.Black;
             }
         }
 

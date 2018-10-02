@@ -1,7 +1,7 @@
 @ECHO OFF
-
+powershell Set-ExecutionPolicy Unrestricted
 powershell Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-REM powershell Unblock-File .\Build\CI\build.ps1
+powershell Unblock-File .\Build\CI\build.ps1
 pushd .\Build\CI\
 
 ECHO MonitoR CI Tool
