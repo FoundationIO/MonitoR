@@ -21,7 +21,7 @@ Precompiled windows setup can be found in the release section : https://github.c
 7. Folder size
 8. Http check (GET, POST, HEAD)
 9. Process check
-10.Service check
+10. Service check
 
 
 ### Screenshots
