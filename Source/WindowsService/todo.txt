@@ -8,3 +8,9 @@
 9)Add version number in About box.
 10)Show sumarry of the import
 11)When importing, remove the duplicates
+12)Ability to enter a folder without the folder selector
+13)Ability to install using a custom user account
+14)Replace the ListView with TreeView
+15)Add a Viewer to open the Status logs
+16)Add Support for MSMQ
+17)Add support for running an application and capturing its output

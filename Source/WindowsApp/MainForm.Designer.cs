@@ -102,16 +102,17 @@ namespace MonitoR.Configurator
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripServiceStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 451);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 557);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(753, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1004, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripServiceStatusLabel
             // 
             this.toolStripServiceStatusLabel.Name = "toolStripServiceStatusLabel";
-            this.toolStripServiceStatusLabel.Size = new System.Drawing.Size(738, 17);
+            this.toolStripServiceStatusLabel.Size = new System.Drawing.Size(984, 20);
             this.toolStripServiceStatusLabel.Spring = true;
             this.toolStripServiceStatusLabel.Text = "Service Status : Unknown";
             this.toolStripServiceStatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -127,7 +128,8 @@ namespace MonitoR.Configurator
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(753, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1004, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -143,58 +145,58 @@ namespace MonitoR.Configurator
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.logsToolStripMenuItem.Name = "logsToolStripMenuItem";
-            this.logsToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.logsToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.logsToolStripMenuItem.Text = "File";
             // 
             // importConfigurationToolStripMenuItem
             // 
             this.importConfigurationToolStripMenuItem.Name = "importConfigurationToolStripMenuItem";
-            this.importConfigurationToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.importConfigurationToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.importConfigurationToolStripMenuItem.Text = "Import Configuration";
             this.importConfigurationToolStripMenuItem.Click += new System.EventHandler(this.ImportConfigurationToolStripMenuItem_Click);
             // 
             // exportConfigurationToolStripMenuItem
             // 
             this.exportConfigurationToolStripMenuItem.Name = "exportConfigurationToolStripMenuItem";
-            this.exportConfigurationToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.exportConfigurationToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.exportConfigurationToolStripMenuItem.Text = "Export Configuration";
             this.exportConfigurationToolStripMenuItem.Click += new System.EventHandler(this.ExportConfigurationToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(240, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(292, 6);
             // 
             // openLogFolderToolStripMenuItem
             // 
             this.openLogFolderToolStripMenuItem.Name = "openLogFolderToolStripMenuItem";
-            this.openLogFolderToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.openLogFolderToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.openLogFolderToolStripMenuItem.Text = "Open Log Folder";
             this.openLogFolderToolStripMenuItem.Click += new System.EventHandler(this.OpenLogFolderToolStripMenuItem_Click);
             // 
             // openSettingsToolStripMenuItem
             // 
             this.openSettingsToolStripMenuItem.Name = "openSettingsToolStripMenuItem";
-            this.openSettingsToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.openSettingsToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.openSettingsToolStripMenuItem.Text = "Open Option File Location";
             this.openSettingsToolStripMenuItem.Click += new System.EventHandler(this.OpenSettingsToolStripMenuItem_Click);
             // 
             // openMonitorSettingsLocationToolStripMenuItem
             // 
             this.openMonitorSettingsLocationToolStripMenuItem.Name = "openMonitorSettingsLocationToolStripMenuItem";
-            this.openMonitorSettingsLocationToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.openMonitorSettingsLocationToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.openMonitorSettingsLocationToolStripMenuItem.Text = "Open Monitor Settings Location";
             this.openMonitorSettingsLocationToolStripMenuItem.Click += new System.EventHandler(this.OpenMonitorSettingsLocationToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(240, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(292, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(295, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -205,26 +207,26 @@ namespace MonitoR.Configurator
             this.toolStripSeparator5,
             this.clearLogsToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.optionsToolStripMenuItem.Text = "Options";
             this.optionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(150, 6);
             this.toolStripSeparator5.Visible = false;
             // 
             // clearLogsToolStripMenuItem
             // 
             this.clearLogsToolStripMenuItem.Name = "clearLogsToolStripMenuItem";
-            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.clearLogsToolStripMenuItem.Size = new System.Drawing.Size(153, 26);
             this.clearLogsToolStripMenuItem.Text = "Clear Logs";
             this.clearLogsToolStripMenuItem.Visible = false;
             // 
@@ -235,26 +237,26 @@ namespace MonitoR.Configurator
             this.EditSensorToolStripMenuItem,
             this.DeleteSensorToolStripMenuItem});
             this.sensorToolStripMenuItem.Name = "sensorToolStripMenuItem";
-            this.sensorToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.sensorToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.sensorToolStripMenuItem.Text = "Sensor";
             // 
             // addSensorMenuItem
             // 
             this.addSensorMenuItem.Name = "addSensorMenuItem";
-            this.addSensorMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.addSensorMenuItem.Size = new System.Drawing.Size(194, 26);
             this.addSensorMenuItem.Text = "Add New Sensor";
             // 
             // EditSensorToolStripMenuItem
             // 
             this.EditSensorToolStripMenuItem.Name = "EditSensorToolStripMenuItem";
-            this.EditSensorToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.EditSensorToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.EditSensorToolStripMenuItem.Text = "Edit Sensor";
             this.EditSensorToolStripMenuItem.Click += new System.EventHandler(this.LvSensorList_DoubleClick);
             // 
             // DeleteSensorToolStripMenuItem
             // 
             this.DeleteSensorToolStripMenuItem.Name = "DeleteSensorToolStripMenuItem";
-            this.DeleteSensorToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.DeleteSensorToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.DeleteSensorToolStripMenuItem.Text = "Delete Sensor";
             // 
             // viewToolStripMenuItem
@@ -264,40 +266,43 @@ namespace MonitoR.Configurator
             this.viewLogsToolStripMenuItem,
             this.viewJobStatusToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.viewToolStripMenuItem.Text = "View";
-            this.viewToolStripMenuItem.Visible = false;
             // 
             // viewSensorsToolStripMenuItem
             // 
             this.viewSensorsToolStripMenuItem.Name = "viewSensorsToolStripMenuItem";
-            this.viewSensorsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.viewSensorsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.viewSensorsToolStripMenuItem.Text = "View Sensors";
+            this.viewSensorsToolStripMenuItem.Visible = false;
             // 
             // viewLogsToolStripMenuItem
             // 
             this.viewLogsToolStripMenuItem.Name = "viewLogsToolStripMenuItem";
-            this.viewLogsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.viewLogsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.viewLogsToolStripMenuItem.Text = "View Logs";
+            this.viewLogsToolStripMenuItem.Visible = false;
+            this.viewLogsToolStripMenuItem.Click += new System.EventHandler(this.ViewLogsToolStripMenuItem_Click);
             // 
             // viewJobStatusToolStripMenuItem
             // 
             this.viewJobStatusToolStripMenuItem.Name = "viewJobStatusToolStripMenuItem";
-            this.viewJobStatusToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.viewJobStatusToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.viewJobStatusToolStripMenuItem.Text = "View Job Status";
+            this.viewJobStatusToolStripMenuItem.Click += new System.EventHandler(this.ViewJobStatusToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -315,17 +320,17 @@ namespace MonitoR.Configurator
             this.OptionsToolbarMenuItem,
             this.toolStripSeparator3,
             this.AboutToolbarMenuItem});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(753, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1004, 31);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(32, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(41, 28);
             this.toolStripLabel1.Text = "View";
             this.toolStripLabel1.Visible = false;
             // 
@@ -337,7 +342,7 @@ namespace MonitoR.Configurator
             "Logs",
             "Job Status"});
             this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(150, 31);
+            this.toolStripButton8.Size = new System.Drawing.Size(199, 31);
             this.toolStripButton8.Visible = false;
             // 
             // toolStripSeparator4
@@ -368,112 +373,112 @@ namespace MonitoR.Configurator
             this.AddToolbarMenuItem.Image = global::MonitoR.Configurator.Properties.Resources.db_register24_h;
             this.AddToolbarMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddToolbarMenuItem.Name = "AddToolbarMenuItem";
-            this.AddToolbarMenuItem.Size = new System.Drawing.Size(40, 28);
+            this.AddToolbarMenuItem.Size = new System.Drawing.Size(43, 28);
             this.AddToolbarMenuItem.Text = "toolStripButton1";
             this.AddToolbarMenuItem.ToolTipText = "Add new sensor";
             // 
             // cpuSensorToolStripMenuItem
             // 
             this.cpuSensorToolStripMenuItem.Name = "cpuSensorToolStripMenuItem";
-            this.cpuSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.cpuSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.cpuSensorToolStripMenuItem.Text = "Cpu sensor";
             this.cpuSensorToolStripMenuItem.Click += new System.EventHandler(this.CpuSensorToolStripMenuItem_Click);
             // 
             // drivespaceSensorToolStripMenuItem
             // 
             this.drivespaceSensorToolStripMenuItem.Name = "drivespaceSensorToolStripMenuItem";
-            this.drivespaceSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.drivespaceSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.drivespaceSensorToolStripMenuItem.Text = "Drivespace sensor";
             this.drivespaceSensorToolStripMenuItem.Click += new System.EventHandler(this.DrivespaceSensorToolStripMenuItem_Click);
             // 
             // fileSizeSensorToolStripMenuItem1
             // 
             this.fileSizeSensorToolStripMenuItem1.Name = "fileSizeSensorToolStripMenuItem1";
-            this.fileSizeSensorToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.fileSizeSensorToolStripMenuItem1.Size = new System.Drawing.Size(260, 26);
             this.fileSizeSensorToolStripMenuItem1.Text = "File size sensor";
             this.fileSizeSensorToolStripMenuItem1.Click += new System.EventHandler(this.FileSizeSensorToolStripMenuItem1_Click);
             // 
             // fileCheckSensorToolStripMenuItem
             // 
             this.fileCheckSensorToolStripMenuItem.Name = "fileCheckSensorToolStripMenuItem";
-            this.fileCheckSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.fileCheckSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.fileCheckSensorToolStripMenuItem.Text = "File check sensor";
             this.fileCheckSensorToolStripMenuItem.Click += new System.EventHandler(this.FileCheckSensorToolStripMenuItem_Click);
             // 
             // folderSizeSensorToolStripMenuItem1
             // 
             this.folderSizeSensorToolStripMenuItem1.Name = "folderSizeSensorToolStripMenuItem1";
-            this.folderSizeSensorToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.folderSizeSensorToolStripMenuItem1.Size = new System.Drawing.Size(260, 26);
             this.folderSizeSensorToolStripMenuItem1.Text = "Folder size sensor";
             this.folderSizeSensorToolStripMenuItem1.Click += new System.EventHandler(this.FolderSizeSensorToolStripMenuItem1_Click);
             // 
             // folderCheckSensorToolStripMenuItem
             // 
             this.folderCheckSensorToolStripMenuItem.Name = "folderCheckSensorToolStripMenuItem";
-            this.folderCheckSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.folderCheckSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.folderCheckSensorToolStripMenuItem.Text = "Folder check sensor";
             this.folderCheckSensorToolStripMenuItem.Click += new System.EventHandler(this.FolderCheckSensorToolStripMenuItem_Click);
             // 
             // ftpSensorToolStripMenuItem
             // 
             this.ftpSensorToolStripMenuItem.Name = "ftpSensorToolStripMenuItem";
-            this.ftpSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.ftpSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.ftpSensorToolStripMenuItem.Text = "Ftp sensor";
             this.ftpSensorToolStripMenuItem.Click += new System.EventHandler(this.FtpSensorToolStripMenuItem_Click);
             // 
             // httpSensorToolStripMenuItem
             // 
             this.httpSensorToolStripMenuItem.Name = "httpSensorToolStripMenuItem";
-            this.httpSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.httpSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.httpSensorToolStripMenuItem.Text = "Http sensor";
             this.httpSensorToolStripMenuItem.Click += new System.EventHandler(this.HttpSensorToolStripMenuItem_Click);
             // 
             // iISApplicationPoolSensorToolStripMenuItem
             // 
             this.iISApplicationPoolSensorToolStripMenuItem.Name = "iISApplicationPoolSensorToolStripMenuItem";
-            this.iISApplicationPoolSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.iISApplicationPoolSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.iISApplicationPoolSensorToolStripMenuItem.Text = "IIS Application Pool sensor";
             this.iISApplicationPoolSensorToolStripMenuItem.Click += new System.EventHandler(this.IISApplicationPoolSensorToolStripMenuItem_Click);
             // 
             // iISWebsiteSensorToolStripMenuItem
             // 
             this.iISWebsiteSensorToolStripMenuItem.Name = "iISWebsiteSensorToolStripMenuItem";
-            this.iISWebsiteSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.iISWebsiteSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.iISWebsiteSensorToolStripMenuItem.Text = "IIS Website sensor";
             this.iISWebsiteSensorToolStripMenuItem.Click += new System.EventHandler(this.IISWebsiteSensorToolStripMenuItem_Click);
             // 
             // pingSensorToolStripMenuItem
             // 
             this.pingSensorToolStripMenuItem.Name = "pingSensorToolStripMenuItem";
-            this.pingSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.pingSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.pingSensorToolStripMenuItem.Text = "Ping sensor";
             this.pingSensorToolStripMenuItem.Click += new System.EventHandler(this.PingSensorToolStripMenuItem_Click_1);
             // 
             // processSensorToolStripMenuItem
             // 
             this.processSensorToolStripMenuItem.Name = "processSensorToolStripMenuItem";
-            this.processSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.processSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.processSensorToolStripMenuItem.Text = "Process sensor";
             this.processSensorToolStripMenuItem.Click += new System.EventHandler(this.ProcessSensorToolStripMenuItem_Click);
             // 
             // ramSensorToolStripMenuItem
             // 
             this.ramSensorToolStripMenuItem.Name = "ramSensorToolStripMenuItem";
-            this.ramSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.ramSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.ramSensorToolStripMenuItem.Text = "Ram sensor";
             this.ramSensorToolStripMenuItem.Click += new System.EventHandler(this.RamSensorToolStripMenuItem_Click);
             // 
             // serviceSensorToolStripMenuItem
             // 
             this.serviceSensorToolStripMenuItem.Name = "serviceSensorToolStripMenuItem";
-            this.serviceSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.serviceSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.serviceSensorToolStripMenuItem.Text = "Service sensor";
             this.serviceSensorToolStripMenuItem.Click += new System.EventHandler(this.ServiceSensorToolStripMenuItem_Click);
             // 
             // sqlConnectionSensorToolStripMenuItem
             // 
             this.sqlConnectionSensorToolStripMenuItem.Name = "sqlConnectionSensorToolStripMenuItem";
-            this.sqlConnectionSensorToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.sqlConnectionSensorToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
             this.sqlConnectionSensorToolStripMenuItem.Text = "Sql Connection sensor";
             this.sqlConnectionSensorToolStripMenuItem.Click += new System.EventHandler(this.SqlConnectionSensorToolStripMenuItem_Click);
             // 
@@ -559,9 +564,10 @@ namespace MonitoR.Configurator
             this.columnHeader4});
             this.lvSensorList.FullRowSelect = true;
             this.lvSensorList.HideSelection = false;
-            this.lvSensorList.Location = new System.Drawing.Point(0, 58);
+            this.lvSensorList.Location = new System.Drawing.Point(0, 71);
+            this.lvSensorList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lvSensorList.Name = "lvSensorList";
-            this.lvSensorList.Size = new System.Drawing.Size(753, 390);
+            this.lvSensorList.Size = new System.Drawing.Size(1003, 479);
             this.lvSensorList.TabIndex = 0;
             this.lvSensorList.UseCompatibleStateImageBehavior = false;
             this.lvSensorList.View = System.Windows.Forms.View.Details;
@@ -591,15 +597,16 @@ namespace MonitoR.Configurator
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 473);
+            this.ClientSize = new System.Drawing.Size(1004, 582);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lvSensorList);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MonitoR - Configurator";

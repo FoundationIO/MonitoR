@@ -523,5 +523,18 @@ namespace MonitoR.Configurator
         {
             AddSensor(new Common.Sensors.FolderCheckSensor());
         }
+
+        private void ViewJobStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new StatusHistoryForm())
+            {
+                dlg.ShowDialog(this);
+            }
+        }
+
+        private void ViewLogsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -179,6 +179,12 @@
     <Compile Include="SensorForms\SqlConnectionSensorForm.Designer.cs">
       <DependentUpon>SqlConnectionSensorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StatusHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatusHistoryForm.Designer.cs">
+      <DependentUpon>StatusHistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\FormUtils.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
@@ -250,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SensorForms\SqlConnectionSensorForm.resx">
       <DependentUpon>SqlConnectionSensorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusHistoryForm.resx">
+      <DependentUpon>StatusHistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

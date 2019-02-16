@@ -18,7 +18,7 @@ namespace MonitoR.Common.Utilities
                 Subject = subject,
                 Body = body
             };
-            
+
             using (var client = new SmtpClient
             {
                 Timeout = timeoutInSec * 1000,

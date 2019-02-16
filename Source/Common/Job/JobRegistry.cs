@@ -45,7 +45,7 @@ namespace MonitoR.Common.Job
 
                 if (!sensor.Enabled)
                 {
-                    log.Info($"Ignore diabled Job - {sensor.Name} ({sensor.SensorType}) ( {sensor.Id}) - " + sensor.GetDetails());
+                    log.Info($"Ignore disabled Job - {sensor.Name} ({sensor.SensorType}) ( {sensor.Id}) - " + sensor.GetDetails());
                     continue;
                 }
 
